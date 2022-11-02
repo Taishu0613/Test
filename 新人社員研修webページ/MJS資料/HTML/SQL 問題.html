@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SQL 問題.MD</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* a11y-dark theme */
+/* Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css */
+/* @author: ericwbailey */
+
+/* Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #d4d0ab;
+}
+
+/* Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #ffa07a;
+}
+
+/* Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #f5ab35;
+}
+
+/* Yellow */
+.hljs-attribute {
+  color: #ffd700;
+}
+
+/* Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #abe338;
+}
+
+/* Blue */
+.hljs-title,
+.hljs-section {
+  color: #00e0e0;
+}
+
+/* Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #dcc6e0;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #2b2b2b;
+  color: #f8f8f2;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .hljs-addition,
+  .hljs-attribute,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-bullet,
+  .hljs-comment,
+  .hljs-link,
+  .hljs-literal,
+  .hljs-meta,
+  .hljs-number,
+  .hljs-params,
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-type,
+  .hljs-quote {
+        color: highlight;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag {
+        font-weight: bold;
+    }
+}
+
+</style>
+<link rel="stylesheet" href="file://ncp-zaimu-fs1/S.WORK/%E6%96%B0%E5%85%A5%E7%A4%BE%E5%93%A1%E7%A0%94%E4%BF%AE/%E6%96%B0%E4%BA%BA%E7%A4%BE%E5%93%A1%E7%A0%94%E4%BF%AEweb%E3%83%9A%E3%83%BC%E3%82%B8/MJS%E8%B3%87%E6%96%99/github-markdown.css" type="text/css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="sql%E5%95%8F%E9%A1%8C-%E8%A7%A3%E7%AD%94%E3%81%BE%E3%81%A8%E3%82%81">SQL問題　解答まとめ</h1>
+<h2 id="%E7%AC%AC%EF%BC%92%E5%9B%9E">【第２回】</h2>
+<h3 id="%EF%BC%91%E5%AD%A6%E7%94%9F%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%B9%B4%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%84%E9%A0%86%E3%83%BB%E7%B5%84%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%83%BB%E5%AD%A6%E7%94%9Fno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%81%AB%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">１．学生の情報を、年の大きい順・組の小さい順・学生Noの小さい順に取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%B9%B4%E7%B5%84%E5%AD%A6%E7%94%9Fno%E6%B0%8F%E5%90%8D%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「年」「組」「学生No」「氏名」とする</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> Nen,Kumi,GakuseiNo,<span class="hljs-keyword">Name</span> <span class="hljs-keyword">FROM</span> <span class="hljs-string">"DBA"</span>.<span class="hljs-string">"Gakusei"</span><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Nen <span class="hljs-keyword">DESC</span>
+</div></code></pre>
+<h3 id="%EF%BC%922008%E5%B9%B45%E6%9C%8820%E6%97%A5%E3%81%AB%E5%AE%9F%E6%96%BD%E3%81%95%E3%82%8C%E3%81%9F%E6%95%B0%E5%AD%A6%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%AD%A6%E7%94%9Fno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%81%AB%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">２．2008年5月20日に実施された数学のテストの情報を、学生Noの小さい順に取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%AD%A6%E7%94%9Fno%E7%82%B9%E6%95%B0%E3%81%A8%E3%81%99%E3%82%8B%E6%97%A5%E4%BB%98%E3%82%92%E6%9D%A1%E4%BB%B6%E3%81%AB%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AFcast%E9%96%A2%E6%95%B0%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B%E4%BA%8B%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「学生No」「点数」とする日付を条件に指定する際はCAST関数を使用する事とする</h5>
+<p>※参考※
+ＣＡＳＴ関数の使用例　⇒　CAST(‘日付の文字列’ AS DATETIME)</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> GakuseiNo,Tensu <span class="hljs-keyword">FROM</span> <span class="hljs-string">"DBA"</span>.<span class="hljs-string">"Saiten"</span> <span class="hljs-keyword">WHERE</span> JissiDate =<span class="hljs-keyword">CAST</span>(<span class="hljs-string">'20080520'</span> <span class="hljs-keyword">AS</span> DATETIME)<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> GakuseiNo
+</div></code></pre>
+<h3 id="%EF%BC%932008%E5%B9%B45%E6%9C%8820%E6%97%A5%E3%81%AB%E5%AE%9F%E6%96%BD%E3%81%95%E3%82%8C%E3%81%9F%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E7%82%B9%E6%95%B0%E3%81%8C60%E7%82%B9%E6%9C%AA%E6%BA%80%E3%81%AE%E4%BA%BA%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%B9%B4%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%84%E9%A0%86%E3%83%BB%E5%AD%A6%E7%94%9Fno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%83%BB%E7%A7%91%E7%9B%AEno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%81%AB%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">３．2008年5月20日に実施されたテストの点数が60点未満の人の情報を、年の大きい順・学生Noの小さい順・科目Noの小さい順に取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%B9%B4%E5%AD%A6%E7%94%9F%EF%BD%8E%EF%BD%8F%E6%B0%8F%E5%90%8D%E7%A7%91%E7%9B%AEno%E7%82%B9%E6%95%B0%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「年」「学生Ｎｏ」「氏名」「科目No」「点数」とする</h5>
+<p>※参考※
+ＣＡＳＴ関数の使用例　⇒　CAST(‘日付の文字列’ AS DATETIME)</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> G.Nen,S.GakuseiNo,G.name,KamokuNo,Tensu <span class="hljs-keyword">FROM</span> <span class="hljs-string">"DBA"</span>.<span class="hljs-string">"Saiten"</span> <span class="hljs-keyword">AS</span> S
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-string">"Gakusei"</span><span class="hljs-keyword">AS</span> G <span class="hljs-keyword">ON</span> G.GakuseiNo=S.GakuseiNo 
+<span class="hljs-keyword">WHERE</span> JissiDate =<span class="hljs-keyword">CAST</span>(<span class="hljs-string">'20080520'</span> <span class="hljs-keyword">AS</span> DATETIME) <span class="hljs-keyword">AND</span> tensu &lt;= <span class="hljs-number">60</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Nen <span class="hljs-keyword">DESC</span> ,S.GakuseiNo,S.KamokuNo
+</div></code></pre>
+<h3 id="%EF%BC%94%E7%82%B9%E6%95%B0%E3%81%8C60%E7%82%B9%E6%9C%AA%E6%BA%80%E3%81%AE%E4%BA%BA%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%AE%9F%E6%96%BD%E5%B9%B4%E6%9C%88%E6%97%A5%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%84%E9%A0%86%EF%BD%A5%E5%B9%B4%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%84%E9%A0%86%E3%83%BB%E5%AD%A6%E7%94%9Fno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%81%AB%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">４．点数が60点未満の人の情報を、実施年月日の大きい順･年の大きい順・学生Noの小さい順に取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%AE%9F%E6%96%BD%E5%B9%B4%E6%9C%88%E6%97%A5%E5%B9%B4%E5%AD%A6%E7%94%9F%EF%BD%8E%EF%BD%8F%E6%B0%8F%E5%90%8D%E3%81%A8%E3%81%97%E5%90%8C%E4%B8%80%E3%81%AE%E5%AD%A6%E7%94%9F%E3%81%AF%E8%A4%87%E6%95%B0%E5%8F%96%E5%BE%97%E3%81%97%E3%81%AA%E3%81%84%E3%82%82%E3%81%AE%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「実施年月日」「年」「学生Ｎｏ」「氏名」とし、同一の学生は複数取得しないものとする</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> S.JissiDate,G.Nen,S.GakuseiNo,G.name <span class="hljs-keyword">FROM</span> <span class="hljs-string">"DBA"</span>.<span class="hljs-string">"Saiten"</span> <span class="hljs-keyword">AS</span> S 
+<span class="hljs-keyword">INNER</span>  <span class="hljs-keyword">JOIN</span> <span class="hljs-string">"Gakusei"</span><span class="hljs-keyword">AS</span> G <span class="hljs-keyword">ON</span> G.GakuseiNo=S.GakuseiNo 
+<span class="hljs-keyword">WHERE</span> tensu &lt;= <span class="hljs-number">60</span>
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> S.JissiDate,G.Name,G.Nen,S.GakuseiNo
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Nen <span class="hljs-keyword">DESC</span>, S.GakuseiNo <span class="hljs-keyword">DESC</span>,G.Nen <span class="hljs-keyword">DESC</span> ,S.GakuseiNo <span class="hljs-keyword">ASC</span>
+</div></code></pre>
+<h2 id="%E7%AC%AC%EF%BC%93%E5%9B%9E">【第３回】</h2>
+<h3 id="%EF%BC%91%E5%AD%A6%E7%94%9F%E3%83%BB%E7%A7%91%E7%9B%AE%E6%AF%8E%E3%81%AE%E6%9C%80%E9%AB%98%E7%82%B9%E6%95%B0%E3%83%BB%E6%9C%80%E4%BD%8E%E7%82%B9%E6%95%B0%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%AD%A6%E7%94%9Fno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%83%BB%E7%A7%91%E7%9B%AEno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%81%AB%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">１．学生・科目毎の最高点数・最低点数の情報を、学生Noの小さい順・科目Noの小さい順に取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%AD%A6%E7%94%9Fno%E7%A7%91%E7%9B%AEno%E6%9C%80%E9%AB%98%E7%82%B9%E6%95%B0saikou%E6%9C%80%E4%BD%8E%E7%82%B9%E6%95%B0saitei%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「学生No」「科目No」「最高点数（Saikou）」「最低点数（Saitei）」とする</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> S.GakuseiNo, K.KamokuNo,<span class="hljs-keyword">MAX</span>(Tensu)<span class="hljs-keyword">AS</span> Saikou, <span class="hljs-keyword">MIN</span>(Tensu)<span class="hljs-keyword">AS</span> Saitei <span class="hljs-keyword">FROM</span> <span class="hljs-string">"Saiten"</span><span class="hljs-keyword">AS</span> S
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-string">"Kamoku"</span><span class="hljs-keyword">AS</span> K <span class="hljs-keyword">ON</span> S.KamokuNo = K.KamokuNo
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> S.GakuseiNo ,K.KamokuNo
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> GakuseiNo,K.KamokuNo;
+</div></code></pre>
+<h3 id="%EF%BC%92%E5%B9%B4%E3%83%BB%E7%A7%91%E7%9B%AE%E6%AF%8E%E3%81%AE%E6%9C%80%E9%AB%98%E7%82%B9%E6%95%B0%E3%83%BB%E6%9C%80%E4%BD%8E%E7%82%B9%E6%95%B0%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%B9%B4%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%84%E9%A0%86%E3%83%BB%E7%A7%91%E7%9B%AEno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%81%AB%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">２．年・科目毎の最高点数・最低点数の情報を、年の大きい順・科目Noの小さい順に取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%B9%B4%E7%A7%91%E7%9B%AE%E5%90%8D%E6%9C%80%E9%AB%98%E7%82%B9%E6%95%B0saikou%E6%9C%80%E4%BD%8E%E7%82%B9%E6%95%B0saitei%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「年」「科目名」「最高点数（Saikou）」「最低点数（Saitei）」とする</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> Nen, S.KamokuNo,<span class="hljs-keyword">MAX</span>(Tensu)<span class="hljs-keyword">AS</span> Saikou, <span class="hljs-keyword">MIN</span>(Tensu)<span class="hljs-keyword">AS</span> Saitei <span class="hljs-keyword">FROM</span> <span class="hljs-string">"Gakusei"</span><span class="hljs-keyword">AS</span> G
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-string">"Saiten"</span><span class="hljs-keyword">AS</span> S <span class="hljs-keyword">ON</span> S.GakuseiNo = G.GakuseiNo
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Nen,S.KamokuNo
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Nen <span class="hljs-keyword">DESC</span>, S.KamokuNo;
+</div></code></pre>
+<h3 id="%EF%BC%93%E5%AD%A6%E7%94%9F%E3%83%BB%E7%A7%91%E7%9B%AE%E6%AF%8E%E3%81%AE%E5%B9%B3%E5%9D%87%E7%82%B9%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%B9%B4%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%84%E9%A0%86%E3%83%BB%E7%B5%84%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%83%BB%E5%AD%A6%E7%94%9Fno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%83%BB%E7%A7%91%E7%9B%AEno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%81%AB%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">３．学生・科目毎の平均点の情報を、年の大きい順・組の小さい順・学生Noの小さい順・科目Noの小さい順に取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%B9%B4%E7%B5%84%E6%B0%8F%E5%90%8Dgakuseiname%E7%A7%91%E7%9B%AE%E5%90%8Dkamokuname%E5%B9%B3%E5%9D%87%E7%82%B9heikin%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「年」「組」「氏名（GakuseiName）」「科目名（KamokuName）」「平均点（Heikin）」とする</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> Nen, Kumi,G.name,K.name <span class="hljs-keyword">AS</span> KamokuName,<span class="hljs-keyword">AVG</span>(Tensu)<span class="hljs-keyword">AS</span> Heikin <span class="hljs-keyword">FROM</span> <span class="hljs-string">"Gakusei"</span><span class="hljs-keyword">AS</span> G
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-string">"Saiten"</span><span class="hljs-keyword">AS</span> S <span class="hljs-keyword">ON</span> S.GakuseiNo = G.GakuseiNo
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-string">"Kamoku"</span><span class="hljs-keyword">AS</span> K <span class="hljs-keyword">ON</span> K.KamokuNo = S.KamokuNo
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Nen, Kumi,G.name,K.name
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Nen <span class="hljs-keyword">DESC</span>, Kumi;
+</div></code></pre>
+<h3 id="%EF%BC%94%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E5%B9%B3%E5%9D%87%E5%80%A4%E3%81%8C60%E7%82%B9%E4%BB%A5%E4%B8%8A%E3%81%8B%E3%81%A470%E7%82%B9%E6%9C%AA%E6%BA%80%E3%81%AE%E5%AD%A6%E7%94%9F%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%AD%A6%E7%94%9Fno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%81%AB%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">４．テストの平均値が60点以上かつ70点未満の学生の情報を、学生Noの小さい順に取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%AD%A6%E7%94%9Fno%E5%B9%B3%E5%9D%87%E7%82%B9heikin%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「学生No」「平均点（Heikin）」とする</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> GakuseiNo,<span class="hljs-keyword">AVG</span>(Tensu)<span class="hljs-keyword">AS</span> Heikin <span class="hljs-keyword">FROM</span> <span class="hljs-string">"Saiten"</span>
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> GakuseiNo
+<span class="hljs-keyword">HAVING</span> Heikin &gt;=<span class="hljs-number">60</span> <span class="hljs-keyword">AND</span> Heikin &lt;<span class="hljs-number">70</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> GakuseiNo
+
+</div></code></pre>
+<h2 id="%E7%AC%AC%EF%BC%94%E5%9B%9E">【第４回】</h2>
+<h3 id="%EF%BC%91%E3%83%86%E3%82%B9%E3%83%88%E3%81%A790%E7%82%B9%E4%BB%A5%E4%B8%8A%E5%8F%96%E3%81%A3%E3%81%9F%E5%AD%A6%E7%94%9F%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%B9%B4%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%84%E9%A0%86%E3%83%BB%E7%B5%84%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%83%BB%E5%AD%A6%E7%94%9Fno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%81%AB%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">１．テストで90点以上取った学生の情報を、年の大きい順・組の小さい順・学生Noの小さい順に取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%B9%B4%E7%B5%84%E5%AD%A6%E7%94%9Fno%E6%B0%8F%E5%90%8D%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「年」「組」「学生No」「氏名」とする</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> Nen, Kumi,G.GakuseiNo,<span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> <span class="hljs-string">"Gakusei"</span><span class="hljs-keyword">AS</span> G
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-string">"Saiten"</span> <span class="hljs-keyword">AS</span> S
+<span class="hljs-keyword">ON</span> G.GakuseiNo = S.GakuseiNo
+<span class="hljs-keyword">WHERE</span> tensu &gt;=<span class="hljs-number">90</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Nen <span class="hljs-keyword">DESC</span>, Kumi, G.GakuseiNo
+</div></code></pre>
+<h3 id="%EF%BC%92%E7%8F%BE%E5%9C%A8%E3%81%BE%E3%81%A7%E3%81%AB%E5%AE%9F%E6%96%BD%E3%81%95%E3%82%8C%E3%81%9F%E3%83%86%E3%82%B9%E3%83%883%E5%9B%9E%C3%973%E7%A7%91%E7%9B%AE%E3%82%92%E5%85%A8%E3%81%A6%E5%8F%97%E3%81%91%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E5%AD%A6%E7%94%9F%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%B9%B4%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%84%E9%A0%86%E3%83%BB%E7%B5%84%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%83%BB%E5%AD%A6%E7%94%9Fno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%81%AB%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">２．現在までに実施されたテスト（3回×3科目）を全て受けていない学生の情報を、年の大きい順・組の小さい順・学生Noの小さい順に取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%B9%B4%E7%B5%84%E5%AD%A6%E7%94%9Fno%E6%B0%8F%E5%90%8D%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「年」「組」「学生No」「氏名」とする</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> Nen, Kumi,G.GakuseiNo,<span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> <span class="hljs-string">"Gakusei"</span><span class="hljs-keyword">AS</span> G
+<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-string">"Saiten"</span> <span class="hljs-keyword">AS</span> S
+<span class="hljs-keyword">ON</span> G.GakuseiNo = S.GakuseiNo
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Nen,Kumi,G.GakuseiNo ,<span class="hljs-keyword">name</span>
+<span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(G.GakuseiNo) !=<span class="hljs-number">9</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Nen <span class="hljs-keyword">DESC</span>, Kumi, G.GakuseiNo
+</div></code></pre>
+<h3 id="%EF%BC%93%E5%AE%9F%E6%96%BD%E5%B9%B4%E6%9C%88%E6%97%A5%E3%83%BB%E5%AD%A6%E5%B9%B4%E6%AF%8E%E3%81%AE%E5%9B%BD%E8%AA%9E%E3%81%AE%E6%9C%80%E9%AB%98%E7%82%B9%E6%95%B0%E3%81%A8%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E5%AD%A6%E7%94%9F%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%AE%9F%E6%96%BD%E5%B9%B4%E6%9C%88%E6%97%A5%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%83%BB%E5%B9%B4%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%84%E9%A0%86%E3%81%AB%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">３．実施年月日・学年毎の国語の最高点数と取得した学生の情報を、実施年月日の小さい順・年の大きい順に取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%AE%9F%E6%96%BD%E5%B9%B4%E6%9C%88%E6%97%A5%E5%B9%B4%E5%AD%A6%E7%94%9Fno%E6%B0%8F%E5%90%8D%E6%9C%80%E9%AB%98%E7%82%B9%E6%95%B0saikou%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「実施年月日」「年」「学生No」「氏名」「最高点数（Saikou）」とする</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> S.Jissidate,Nen,<span class="hljs-keyword">MAX</span>(S.Tensu)<span class="hljs-keyword">AS</span> Saikou <span class="hljs-keyword">FROM</span> <span class="hljs-string">"Gakusei"</span><span class="hljs-keyword">AS</span> G
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-string">"Saiten"</span> <span class="hljs-keyword">AS</span> S
+<span class="hljs-keyword">ON</span> G.GakuseiNo = S.GakuseiNo
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> S.JissiDate,Nen
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> S.JissiDate <span class="hljs-keyword">DESC</span>,G.Nen
+//学生ナンバーと氏名を入れるとうまくいかない
+</div></code></pre>
+<h2 id="%E7%AC%AC%EF%BC%95%E5%9B%9E">【第５回】</h2>
+<h3 id="%EF%BC%912008%E5%B9%B45%E6%9C%8820%E6%97%A5%E3%81%AB%E5%AE%9F%E6%96%BD%E3%81%95%E3%82%8C%E3%81%9F%E3%83%86%E3%82%B9%E3%83%88%E3%82%92%E5%8F%97%E3%81%91%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E5%AD%A6%E7%94%9F%E3%81%AE%E7%82%B9%E6%95%B0%E3%82%920%E7%82%B9%E3%81%A7%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">１．2008年5月20日に実施されたテストを受けていない学生の点数を、0点で登録するSQLを作りなさい。</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Saiten (JissiDate,GakuseiNo,KamokuNo,Tensu)
+<span class="hljs-keyword">SELECT</span> 
+<span class="hljs-keyword">CAST</span>(<span class="hljs-string">'2008/05/20'</span> <span class="hljs-keyword">AS</span> DATETIME),GakuseiNo,Kamoku.KamokuNo,<span class="hljs-number">0</span>
+<span class="hljs-keyword">FROM</span> Gakusei <span class="hljs-keyword">CROSS</span> <span class="hljs-keyword">JOIN</span> Kamoku
+<span class="hljs-keyword">EXCEPT</span>
+<span class="hljs-keyword">SELECT</span> 
+JissiDate,GakuseiNo,KamokuNo, <span class="hljs-number">0</span>
+<span class="hljs-keyword">FROM</span> Saiten
+<span class="hljs-keyword">WHERE</span> 
+JissiDate =<span class="hljs-keyword">CAST</span>(<span class="hljs-string">'2008/05/20'</span> <span class="hljs-keyword">AS</span> DATETIME)
+</div></code></pre>
+<h3 id="%EF%BC%922008%E5%B9%B410%E6%9C%8815%E6%97%A5%E3%81%AB%E5%AE%9F%E6%96%BD%E3%81%95%E3%82%8C%E3%81%9F3%E5%B9%B4%E3%81%AE%E6%8E%A1%E7%82%B9%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%83%85%E5%A0%B1%E3%82%92%E5%85%A8%E3%81%A6%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">２．2008年10月15日に実施された3年の採点データの情報を、全て削除するSQLを作りなさい。</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Saiten 
+<span class="hljs-keyword">WHERE</span>  JissiDate = <span class="hljs-keyword">CAST</span>(<span class="hljs-string">'2008/05/20'</span> <span class="hljs-keyword">AS</span> DATETIME)<span class="hljs-keyword">AND</span> GakuseiNo 
+<span class="hljs-keyword">IN</span>(<span class="hljs-keyword">SELECT</span> GakuseiNo <span class="hljs-keyword">FROM</span> Gakusei <span class="hljs-keyword">WHERE</span> Nen = <span class="hljs-number">3</span>)
+</div></code></pre>
+<h3 id="%EF%BC%932008%E5%B9%B47%E6%9C%888%E6%97%A5%E3%81%AB%E8%A1%8C%E3%82%8F%E3%82%8C%E3%81%9F2%E5%B9%B4%E3%81%AE%E5%9B%BD%E8%AA%9E%E3%81%AE%E7%82%B9%E6%95%B0%E3%82%925%E7%82%B9%E5%8A%A0%E7%AE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">３．2008年7月8日に行われた2年の国語の点数を、5点加算するSQLを作りなさい。</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">UPDATE</span> Saiten <span class="hljs-keyword">SET</span> Tensu = Tensu+<span class="hljs-number">5</span>
+<span class="hljs-keyword">WHERE</span>  JissiDate = <span class="hljs-keyword">CAST</span>(<span class="hljs-string">'2008/07/08'</span> <span class="hljs-keyword">AS</span> DATETIME)<span class="hljs-keyword">AND</span> GakuseiNo 
+<span class="hljs-keyword">IN</span>(<span class="hljs-keyword">SELECT</span> GakuseiNo <span class="hljs-keyword">FROM</span> Gakusei <span class="hljs-keyword">WHERE</span> Nen = <span class="hljs-number">2</span>)
+</div></code></pre>
+<h2 id="%E7%AC%AC%EF%BC%96%E5%9B%9E">【第６回】</h2>
+<h3 id="%EF%BC%912008%E5%B9%B45%E6%9C%8820%E6%97%A5%E3%81%AB%E5%AE%9F%E6%96%BD%E3%81%95%E3%82%8C%E3%81%9F%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E5%AD%A6%E7%94%9F%E3%81%94%E3%81%A8%E3%81%AE%E7%A7%91%E7%9B%AE%E3%81%AE%E7%82%B9%E6%95%B0%E6%83%85%E5%A0%B1%E3%82%92%E5%B9%B4%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%84%E9%A0%86%E7%B5%84%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E5%AD%A6%E7%94%9Fno%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%84%E9%A0%86%E3%81%A7%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8Bsql%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%95%E3%81%84">１．2008年5月20日に実施されたテストの学生ごとの科目の点数情報を、年の大きい順、組の小さい順、学生Noの小さい順で取得するSQLを作りなさい。</h3>
+<h5 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%AF%E5%B9%B4%E7%B5%84%E5%AD%A6%E7%94%9Fno%E6%B0%8F%E5%90%8D%E5%9B%BD%E8%AA%9E%E7%AE%97%E6%95%B0%E8%8B%B1%E8%AA%9E%E3%81%A8%E3%81%99%E3%82%8B">取得する項目は「年」「組」「学生No」「氏名」「国語」「算数」「英語」とする。</h5>
+<p>テストを受けていない科目は「-」(ハイフン)を表示して下さい。</p>
+<p>取得イメージ　（例）
+年	組	学生No	氏名	国語	数学	英語
+3	1	100100	…	90	80	78
+3	1	100110	…	80	－	60
+3	2	200101	…	－	－	－
+2	1	200105	…	70	80	90
+2	2	200106	…	90	60	80
+1	1	200115	…	80	90	
+1	1	200116	…	60	80	90</p>
+<p>こんな感じで取得できれば問題ありません。</p>
+
+</body>
+</html>

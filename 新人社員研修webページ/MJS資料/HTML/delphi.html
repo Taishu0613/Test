@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>delphi.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* a11y-dark theme */
+/* Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css */
+/* @author: ericwbailey */
+
+/* Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #d4d0ab;
+}
+
+/* Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #ffa07a;
+}
+
+/* Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #f5ab35;
+}
+
+/* Yellow */
+.hljs-attribute {
+  color: #ffd700;
+}
+
+/* Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #abe338;
+}
+
+/* Blue */
+.hljs-title,
+.hljs-section {
+  color: #00e0e0;
+}
+
+/* Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #dcc6e0;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #2b2b2b;
+  color: #f8f8f2;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .hljs-addition,
+  .hljs-attribute,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-bullet,
+  .hljs-comment,
+  .hljs-link,
+  .hljs-literal,
+  .hljs-meta,
+  .hljs-number,
+  .hljs-params,
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-type,
+  .hljs-quote {
+        color: highlight;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag {
+        font-weight: bold;
+    }
+}
+
+</style>
+<link rel="stylesheet" href="file://ncp-zaimu-fs1/S.WORK/%E6%96%B0%E5%85%A5%E7%A4%BE%E5%93%A1%E7%A0%94%E4%BF%AE/%E6%96%B0%E4%BA%BA%E7%A4%BE%E5%93%A1%E7%A0%94%E4%BF%AEweb%E3%83%9A%E3%83%BC%E3%82%B8/MJS%E8%B3%87%E6%96%99/github-markdown.css" type="text/css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<pre class="hljs"><code><div><span class="hljs-comment">//************************************************************************</span>
+<span class="hljs-comment">//	System		:	XXXXXXXX</span>
+<span class="hljs-comment">//	Program		:	XXXXXXXX処理</span>
+<span class="hljs-comment">//	ProgramID	:	MAS290200</span>
+<span class="hljs-comment">//	Name		:</span>
+<span class="hljs-comment">//	Create		:	2001 / 99 / 99</span>
+<span class="hljs-comment">//	Comment		:	XXXX注意事項等XXXXXXXXXXXXX</span>
+<span class="hljs-comment">//					XXXXXXXXXXXXXXXXXXXXXXXXX</span>
+<span class="hljs-comment">//	History		:	2001 / 99 / 99	X.Xxxxxx</span>
+<span class="hljs-comment">//					XXXXXXXX更新内容XXXXXXX</span>
+<span class="hljs-comment">//*************************************************************************</span>
+<span class="hljs-keyword">unit</span> MAS290200u;
+
+<span class="hljs-keyword">interface</span>
+
+<span class="hljs-keyword">uses</span>
+  Buttons, Classes, VCL.Controls, ComCtrls, dxGrClms, dxDBGrid, dxTL, dxCntner, dxmdaset,
+  daDatMod, VCL.Dialogs, MJSCommonDialogs, Db, FireDAC.Comp.Client, VCL.ExtCtrls, VCL.Forms, VCL.Graphics, Grids, VCL.ImgList, jpeg,
+  Menus, Messages, MJSComboBox, MJSLabel, MJSFunctionBar, MJSSPFunctionBar,
+  MJSStatusBar, MJSSpeedButton, MJSPanel, MJSEdits, MJSQuery, MasComu, MasWndIFu,
+  MJSPreviewIFLu, MjsPrnDlgLu, MjsPrnSupportLu,
+  MjsDBModuleu, MJSMsgStdu, MJSPageControl,
+  MJSRadioGroup, MjsDispCtrl, MJSCommonu, MasMonth, MjsStrCtrl, MJSTab, Mask, Math,
+  MjsDateCtrl, MJSPostCtrl, MJSMemo, MJSStringGrid, MjsExceptU, MJSBitBtn, MasMailEntu,
+  ppDB, ppDBPipe, ppBands, ppCtrls, ppVar, ppPrnabl, ppClass, ppCache, ppComm,
+  ppRelatv, ppProd, ppReport, VCL.StdCtrls, SysUtils, Windows, ppModule,
+  MJSCommon3u,
+  MLXAppWrapperU,
+  MJSKeyDataState,
+  MJSScrollBox, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,<span class="hljs-keyword">Label</span>, MJSFunctionBar, MJSSPFunctionBar,
+  MJSStatusBar, MJSSpeedButton, MJSPanel, MJSEdits, MJSQuery, MasComu, MasWndIFu,
+  MJSPreviewIFLu, MjsPrnDlgLu, MjsPrnSupportLu,
+  MjsDBModuleu, MJSMsgStdu, MJSPageControl,
+  MJSRadioGroup, MjsDispCtrl, MJSCommonu, MasMonth, MjsStrCtrl, MJSTab, Mask, Math,
+  MjsDateCtrl, MJSPostCtrl, MJSMemo, MJSStringGrid, MjsExceptU, MJSBitBtn, MasMailEntu,
+  ppDB, ppDBPipe, ppBands, ppCtrls, ppVar, ppPrnabl, ppClass, ppCache, ppComm,
+  ppRelatv, ppProd, ppReport, VCL.StdCtrls, SysUtils, Windows, ppModule,
+  MJSCommon3u,
+  MLXAppWrapperU,
+  MJSKeyDataState,
+  MJSScrollBox, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, ppDesignLayer, ppParameter,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, ppDesignLayer, ppParameter,
+  FireDAC.Comp.DataSet, MJSPopupMenu, MJSRadioButton;
+
+<span class="hljs-keyword">const</span>
+	WM_ONPAINT = WM_APP + <span class="hljs-number">1</span>;					<span class="hljs-comment">// OnPaint時の処理起動メッセージ用</span>
+    <span class="hljs-comment">{INDEX_COL_GCODE = 1;
+    INDEX_COL_YODATE = 2;
+	INDEX_COL_SWKKBN = 3;  }</span>
+	<span class="hljs-comment">// 和暦西暦区分</span>
+    YEARKBN_WAREKI	= <span class="hljs-number">0</span>;			<span class="hljs-comment">//和暦</span>
+    YEARKBN_SEIREKI	= <span class="hljs-number">1</span>;			<span class="hljs-comment">//西暦</span>
+    <span class="hljs-comment">// 関数返り値</span>
+    RET_NG			= -<span class="hljs-number">1</span>;
+    RET_OK			= <span class="hljs-number">0</span>;
+	<span class="hljs-comment">// 簡略・正式名称区分</span>
+    NAMEKBN_SIMPLE	= <span class="hljs-number">0</span>;
+    NAMEKBN_LONG	= <span class="hljs-number">1</span>;
+ 	<span class="hljs-comment">// ﾊﾟﾀｰﾝ取得順の区分</span>
+    ORDERKBN_INIT			= <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">type</span>
+  <span class="hljs-meta">{$I ActionInterface.inc}</span>
+    	TDTMainData = <span class="hljs-keyword">class</span>
+  <span class="hljs-keyword">private</span>
+	FYearKbn	: Integer;	<span class="hljs-comment">// 和暦西暦区分</span>
+    FComKbn2	: Integer;  <span class="hljs-comment">// 決算確定区分</span>
+    FComKbn3	: Integer;  <span class="hljs-comment">// メール会計区分</span>
+    FDTName7	: <span class="hljs-keyword">String</span>;   <span class="hljs-comment">// ﾌﾘｰｺｰﾄﾞに使用する記号</span>
+  <span class="hljs-keyword">public</span>
+  	<span class="hljs-function"><span class="hljs-keyword">constructor</span> <span class="hljs-title">Create</span><span class="hljs-params">()</span>;</span>
+	<span class="hljs-keyword">property</span> YearKbn: Integer <span class="hljs-keyword">read</span> FYearKbn <span class="hljs-keyword">write</span> FYearKbn;
+	<span class="hljs-keyword">property</span> ComKbn2: Integer <span class="hljs-keyword">read</span> FComKbn2 <span class="hljs-keyword">write</span> FComKbn2;
+	<span class="hljs-keyword">property</span> ComKbn3: Integer <span class="hljs-keyword">read</span> FComKbn3 <span class="hljs-keyword">write</span> FComKbn3;
+	<span class="hljs-keyword">property</span> DTName7: <span class="hljs-keyword">String</span> <span class="hljs-keyword">read</span> FDTName7 <span class="hljs-keyword">write</span> FDTName7;
+  <span class="hljs-keyword">end</span>;
+
+  <span class="hljs-title">TMAS290200f</span> = <span class="hljs-keyword">class</span>(TForm)
+    Pnl_ApToolBar: TMPanel;
+    Sb_End: TMSpeedButton;
+    Sb_Change: TMSpeedButton;
+    Pnl_Footer: TMPanel;
+    Sb_StatusBar: TMStatusBar;
+    Fb_FunctionBar: TMSPFunctionBar;
+    Sb_Main: TMScrollBox;
+    dxMemData1: TdxMemData;
+    dxDBGrid1: TdxDBGrid;
+    DataSource1: TDataSource;
+    AddBtn: TMBitBtn;
+    dxMemData1Name: TStringField;
+    dxMemData1Code: TStringField;
+    NameForm: TEdit;
+    ここに入力してください: TLabel;
+    ChangeBtn: TMBitBtn;
+    DeleteBtn: TMBitBtn;
+    DecideBtn: TMBitBtn;
+    MPopupMenu1: TMPopupMenu;
+    ppReport1: TppReport;
+    ppDBPipeline1: TppDBPipeline;
+    DataSource_print: TDataSource;
+    ppParameterList1: TppParameterList;
+    ppHeaderBand1: TppHeaderBand;
+    TopLabel: TppLabel;
+    ppLine631: TppLine;
+    SVppDate: TppSystemVariable;
+    ppLine1: TppLine;
+    ppLine5: TppLine;
+    ppLine6: TppLine;
+    ppLine12: TppLine;
+    LppCorpCode: TppLabel;
+    LppCorpName: TppLabel;
+    ppLine11: TppLine;
+    ppLabel1: TppLabel;
+    ppLine8: TppLine;
+    ppLabel2: TppLabel;
+    ppDetailBand_Ptn: TppDetailBand;
+    ppUnderLine: TppLine;
+    ppLine3: TppLine;
+    ppLine7: TppLine;
+    ppLine2: TppLine;
+    ppLine4: TppLine;
+    GCode: TppDBText;
+    LongName: TppDBText;
+    ppFooterBand1: TppFooterBand;
+    SVppPage: TppSystemVariable;
+    LppAccOffice: TppLabel;
+    ppDesignLayers1: TppDesignLayers;
+    ppDesignLayer1: TppDesignLayer;
+    Sb_Print: TMSpeedButton;
+    Code: TdxDBGridColumn;
+    <span class="hljs-keyword">Name</span>: TdxDBGridColumn;
+    ID: TdxDBGridColumn;
+    dxMemData1ID: TStringField;
+    MBitBtn2: TMBitBtn;
+    MBitBtn3: TMBitBtn;
+    MBitBtn5: TMBitBtn;
+    dxDBGrid2: TdxDBGrid;
+    SYOUHAI: TdxDBGridColumn;
+    Hand: TdxDBGridColumn;
+    SeriousLevel: TdxDBGridColumn;
+    Num: TdxDBGridColumn;
+    DrowNo: TdxDBGridColumn;
+    HandText: TEdit;
+    Label4: TLabel;
+    Label6: TLabel;
+    Label9: TLabel;
+    LoseBtn: TMBitBtn;
+    WinBtn: TMBitBtn;
+    勝敗: TLabel;
+    SinkenBtn2: TMRadioButton;
+    SinkenBtn3: TMRadioButton;
+    SinkenBtn1: TMRadioButton;
+    RadioGroup1: TRadioGroup;
+    DrowNoBox: TMComboBox;
+    SYOUHAIlabel: TEdit;
+    Label7: TLabel;
+    dxMem_SENREKI: TdxMemData;
+    DataSource_SENREKI: TDataSource;
+    dxMem_SENREKIID: TStringField;
+    dxMem_SENREKISYOUHAI: TStringField;
+    dxMem_SENREKIHand: TStringField;
+    dxMem_SENREKISeriouslyLevel: TStringField;
+    dxMem_SENREKIDrowNo: TIntegerField;
+    dxMem_SENREKINum: TIntegerField;
+    Label8: TLabel;
+    YoiBox: TMComboBox;
+    CodeLabel: TLabel;
+    YOi: TdxDBGridColumn;
+    BackBtn: TMBitBtn;
+    MEkakusi: TGroupBox;
+    dxMem_SENREKIYoi: TStringField;
+    dxMem_Bunseki: TdxMemData;
+    DataSource_Bunseki: TDataSource;
+    dxDBGrid3: TdxDBGrid;
+    Gu: TdxDBGridColumn;
+    Tyoki: TdxDBGridColumn;
+    Pa: TdxDBGridColumn;
+    Most: TdxDBGridColumn;
+    Label10: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    dxMem_BunsekiGu: TStringField;
+    dxMem_BunsekiTyoki: TStringField;
+    dxMem_BunsekiPa: TStringField;
+    dxMem_BunsekiMost: TStringField;
+    MComboBox1: TMComboBox;
+    dxMemData_print: TdxMemData;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    ppLabel3: TppLabel;
+    ppDBText1: TppDBText;
+
+
+
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">FormCreate</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">MemdataSetSuru</span><span class="hljs-params">(<span class="hljs-keyword">var</span> aMem: TdxMemData)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">IDCount</span><span class="hljs-params">()</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">SENREKIdataTOUROKU</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">FormClose</span><span class="hljs-params">(Sender: TObject; <span class="hljs-keyword">var</span> Action: TCloseAction)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">FormCloseQuery</span><span class="hljs-params">(Sender: TObject; <span class="hljs-keyword">var</span> CanClose: Boolean)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">SetFileOut</span><span class="hljs-params">(<span class="hljs-keyword">var</span> aTitle, aMemFld: TStringList)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">FormActivate</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">FormHide</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">FormDestroy</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">FormShow</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">Sb_ChangeClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">Sb_EndClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+    <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">AddBtnClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+    <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">ChangeBtnClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+    <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">DeleteBtnClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+    <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">Sb_MainClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+    <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">Sb_PrintClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">GetDTMain</span><span class="hljs-params">(<span class="hljs-keyword">var</span> aDTMainData: TDTMainData)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">dxPlayerSelect</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+    <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">NameFormClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+    <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">DecideBtnClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+    <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">WinBtnClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">BackBtnClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">Bunseki</span><span class="hljs-params">()</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">BunsekiSQL</span><span class="hljs-params">(Hand,ZYOUKEN:<span class="hljs-keyword">string</span>; m_iMAX:Integer; Colum: <span class="hljs-keyword">string</span>)</span>;</span>
+
+  <span class="hljs-keyword">private</span>
+	<span class="hljs-comment">{ Private 宣言 }</span>
+	m_pMyAppRecord	:	^TMjsAppRecord;
+	m_CorpConnect	:	TFDConnection;
+	m_DataModule	:	TMDataModulef;
+	m_Query			:	TMQuery;
+	m_MASCom		:	TMASCom;
+    m_iZoom         :   Integer;
+	m_AcControl		:	TWinControl;
+	m_Owner         :  TComponent;
+	m_PrnSupport	: TMjsPrnSupportL;          <span class="hljs-comment">// 印刷情報</span>
+    m_MjsPre		: TMJSPreviewIFL;       	<span class="hljs-comment">// 印刷プレビュー</span>
+	m_DTMainData	: TDTMainData;      		<span class="hljs-comment">// 会社基本情報</span>
+	m_bInsertCheck	: Boolean;					<span class="hljs-comment">// 登録チェック</span>
+	m_bFirstInsCheck : Boolean;                <span class="hljs-comment">// 先頭行登録チェック</span>
+	m_MjsMsgRec     : TMjsMsgRec;
+	m_sSinkenLv     :<span class="hljs-keyword">String</span>;
+	m_sYoiLv        :<span class="hljs-keyword">String</span>;
+	m_sDrowNo       :<span class="hljs-keyword">String</span>;
+	M_sHand         :<span class="hljs-keyword">String</span>;
+	m_iDrowNo       :integer;
+	m_iMAX          : Integer;
+
+
+  <span class="hljs-keyword">public</span>
+	<span class="hljs-comment">{ Public 宣言 }</span>
+	<span class="hljs-function"><span class="hljs-keyword">constructor</span> <span class="hljs-title">CreateForm</span><span class="hljs-params">(pRec: Pointer)</span>;</span>
+	<span class="hljs-function"><span class="hljs-keyword">procedure</span>	<span class="hljs-title">CMChildKey</span><span class="hljs-params">(<span class="hljs-keyword">var</span> Msg: TWMKey)</span>;</span> <span class="hljs-keyword">message</span> CM_CHILDKEY;
+
+  <span class="hljs-keyword">end</span>;
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AppEntry</span><span class="hljs-params">(pParam:Pointer)</span> :</span> Integer;
+
+<span class="hljs-keyword">exports</span>
+	AppEntry;
+
+<span class="hljs-keyword">implementation</span>
+
+<span class="hljs-meta">{$R *.DFM}</span>
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Proccess  :	TDTMainDataのｺﾝｽﾄﾗｸﾀ</span>
+<span class="hljs-comment">//	Name	  :	A.Narita</span>
+<span class="hljs-comment">//	Date	  :	2021 / 8 / 20</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">constructor</span> <span class="hljs-title">TDTMainData</span>.<span class="hljs-title">Create</span><span class="hljs-params">()</span>;</span>
+<span class="hljs-keyword">begin</span>
+	<span class="hljs-keyword">inherited</span>;
+	YearKbn	:= <span class="hljs-number">0</span>;
+    ComKbn2	:= <span class="hljs-number">0</span>;
+    ComKbn3	:= <span class="hljs-number">0</span>;
+    DTName7	:= <span class="hljs-string">''</span>;
+<span class="hljs-keyword">end</span>;
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Proccess  :	引数にﾌｧｲﾙ出力情報をセット</span>
+<span class="hljs-comment">//	Name	  :	A.Narita</span>
+<span class="hljs-comment">//	Date	  :	2021 / 8 / 20</span>
+<span class="hljs-comment">//	Parameter :	aTitle	: TStringList	タイトルリスト</span>
+<span class="hljs-comment">//	Parameter : aMemFld	: TStringList   参照フィールドリスト</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">SetFileOut</span><span class="hljs-params">(<span class="hljs-keyword">var</span> aTitle, aMemFld: TStringList)</span>;</span>
+<span class="hljs-keyword">begin</span>
+
+    aTitle.Add(<span class="hljs-string">'ID'</span>);                                                           <span class="hljs-comment">// &lt;#5&gt; Add st</span>
+    aTitle.Add(<span class="hljs-string">'コード'</span>);                                                  <span class="hljs-comment">// &lt;#5&gt; ed</span>
+    aTitle.Add(<span class="hljs-string">'名前'</span>);
+    aMemFld.Add(<span class="hljs-string">'ID'</span>);
+    aMemFld.Add(<span class="hljs-string">'Code'</span>);
+	aMemFld.Add(<span class="hljs-string">'Name'</span>);
+<span class="hljs-keyword">end</span>;
+
+
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Proccess  :	外部ﾌﾟﾛｸﾞﾗﾑからのｴﾝﾄﾘﾎﾟｲﾝﾄ</span>
+<span class="hljs-comment">//	Name	  :</span>
+<span class="hljs-comment">//	Date	  :	2001 / 08 / 29</span>
+<span class="hljs-comment">//	Parameter :	pParam	Pointer</span>
+<span class="hljs-comment">//	Retrun	  :	result</span>
+<span class="hljs-comment">//	History	  :	2001 / 99 / 99	X.Xxxxxx</span>
+<span class="hljs-comment">//				XXXXXXXX修正内容</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AppEntry</span><span class="hljs-params">(pParam: Pointer)</span>:</span> Integer;
+<span class="hljs-keyword">var</span>
+	pMyForm	:   ^TMAS290200f;
+	pRec	:   ^TMjsAppRecord;
+<span class="hljs-keyword">begin</span>
+	result	:= ACTID_RET_OK;
+	pRec	:= Pointer(TAppParam(pParam^).pRecord);
+
+	<span class="hljs-keyword">case</span> TAppParam(pParam^).iAction <span class="hljs-keyword">of</span>
+
+		ACTID_FORMCREATESTART:						<span class="hljs-comment">// ﾌｫｰﾑの作成要求（作成のみ）</span>
+		<span class="hljs-keyword">begin</span>
+			new (pMyForm);
+			<span class="hljs-keyword">try</span>
+				pMyForm^ := TMAS290200f.CreateForm(pRec);
+				pRec^.m_pChildForm := pMyForm;
+			<span class="hljs-keyword">except</span>
+				Dispose(pMyForm);
+				result := ACTID_RET_NG;
+			<span class="hljs-keyword">end</span>;
+		<span class="hljs-keyword">end</span>;
+
+		ACTID_FORMCREATESHOWSTART:					<span class="hljs-comment">// ﾌｫｰﾑの作成要求（作成&amp;表示）</span>
+		<span class="hljs-keyword">begin</span>
+			new (pMyForm);
+			<span class="hljs-keyword">try</span>
+				pMyForm^ := TMAS290200f.CreateForm(pRec);
+				pMyForm^.Show;
+				pRec^.m_pChildForm := pMyForm;
+			<span class="hljs-keyword">except</span>
+				Dispose(pMyForm);
+				result := ACTID_RET_NG;
+			<span class="hljs-keyword">end</span>;
+		<span class="hljs-keyword">end</span>;
+
+		ACTID_FORMCLOSESTART:						<span class="hljs-comment">// ﾌｫｰﾑの解放要求</span>
+		<span class="hljs-keyword">begin</span>
+			pMyForm := Pointer(pRec^.m_pChildForm);
+			pMyForm^.Close;
+			pMyForm^.Free;
+			Dispose(pMyForm);
+		<span class="hljs-keyword">end</span>;
+
+		ACTID_FORMCANCLOSESTART:					<span class="hljs-comment">// ﾌｫｰﾑの解放直前要求</span>
+		<span class="hljs-keyword">begin</span>
+			pMyForm := Pointer(pRec^.m_pChildForm);
+			<span class="hljs-keyword">if</span> pMyForm^.CloseQuery = False <span class="hljs-keyword">then</span>
+				result := ACTID_RET_NG;
+		<span class="hljs-keyword">end</span>;
+
+		ACTID_SHOWSTART:							<span class="hljs-comment">// ﾌｫｰﾑの表示要求</span>
+		<span class="hljs-keyword">begin</span>
+			pMyForm := Pointer(pRec^.m_pChildForm);
+			pMyForm^.Show;
+		<span class="hljs-keyword">end</span>;
+
+		ACTID_HIDESTART:
+		<span class="hljs-keyword">begin</span>
+			pMyForm := Pointer( pRec^.m_pChildForm );
+
+			<span class="hljs-keyword">if</span> pMyForm^.Parent &lt;&gt; <span class="hljs-keyword">nil</span> <span class="hljs-keyword">then</span>
+			<span class="hljs-keyword">begin</span>
+				pMyForm^.Hide;
+			<span class="hljs-keyword">end</span>;
+		<span class="hljs-keyword">end</span>;
+	<span class="hljs-keyword">end</span>;
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Proccess  :	ﾌｫｰﾑｺﾝｽﾄﾗｸﾄ</span>
+<span class="hljs-comment">//	Name	  :</span>
+<span class="hljs-comment">//	Date	  :	2001 / 08 / 29</span>
+<span class="hljs-comment">//	Parameter :	pRec	Pointer</span>
+<span class="hljs-comment">//	Retrun	  :</span>
+<span class="hljs-comment">//	History	  :	2001 / 99 / 99	X.Xxxxxx</span>
+<span class="hljs-comment">//				XXXXXXXX修正内容</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">constructor</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">CreateForm</span><span class="hljs-params">(pRec: Pointer)</span>;</span>
+<span class="hljs-keyword">begin</span>
+	m_pMyAppRecord := pRec;											<span class="hljs-comment">// 構造体のSave</span>
+
+	m_DataModule := TMDataModulef(m_pMyAppRecord^.m_pDBModule^);		<span class="hljs-comment">// DBModuleを取得</span>
+	m_MASCom := TMASCom(m_pMyAppRecord^.m_pSystemArea^);				<span class="hljs-comment">// 会社Noを共通ﾒﾓﾘから取得</span>
+
+	<span class="hljs-comment">// DBOpne</span>
+	m_CorpConnect := m_DataModule.COPDBOpen(<span class="hljs-number">1</span>, m_MASCom.m_iCopNo);	<span class="hljs-comment">// DB Open</span>
+	<span class="hljs-keyword">if</span> m_CorpConnect = <span class="hljs-keyword">nil</span> <span class="hljs-keyword">then</span>
+	<span class="hljs-keyword">begin</span>
+		ShowMessage(<span class="hljs-string">'CreateFormでｴﾗｰが発生しました｡'</span>);
+		<span class="hljs-keyword">raise</span> EMathError.Create(<span class="hljs-string">'エラー'</span>);
+	<span class="hljs-keyword">end</span>;
+
+    <span class="hljs-keyword">inherited</span> 	Create(MLXApplication);
+<span class="hljs-keyword">end</span>;
+
+
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form</span>
+<span class="hljs-comment">//	Event	    :	OnDestroy</span>
+<span class="hljs-comment">//	Name		:</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">FormDestroy</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">begin</span>
+	<span class="hljs-comment">// 印刷プレビューの破棄</span>
+	m_MjsPre.Term ();
+	m_MjsPre.Free ();
+    m_MjsPre := <span class="hljs-keyword">Nil</span>;
+
+    <span class="hljs-comment">// 会社基本ﾃﾞｰﾀｸﾗｽの破棄</span>
+    <span class="hljs-keyword">if</span> Assigned(m_DTMainData) <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">begin</span>
+        m_DTMainData.Free;
+        m_DTMainData := <span class="hljs-keyword">Nil</span>;
+    <span class="hljs-keyword">end</span>;
+
+	<span class="hljs-comment">// クエリを破棄</span>
+    <span class="hljs-keyword">if</span> Assigned(m_Query) <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">begin</span>
+        m_Query.Free;
+        m_Query := <span class="hljs-keyword">Nil</span>;
+    <span class="hljs-keyword">end</span>;
+
+    <span class="hljs-comment">// 会社DBをクローズ</span>
+    <span class="hljs-keyword">if</span> Assigned(m_CorpConnect) <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">begin</span>
+    	m_DataModule.COPDBClose(m_CorpConnect);
+        m_CorpConnect := <span class="hljs-keyword">Nil</span>;
+    <span class="hljs-keyword">end</span>;
+
+	<span class="hljs-keyword">inherited</span>;
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component   :	Form</span>
+<span class="hljs-comment">//	Event	    :	OnCreate</span>
+<span class="hljs-comment">//	Name	    :</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">FormCreate</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">begin</span>
+	Parent := TMPanel(m_pMyAppRecord^.m_pOwnerPanel^);		<span class="hljs-comment">// 親ﾊﾟﾈﾙをParent</span>
+	Align := alClient;										<span class="hljs-comment">// 全領域を作成</span>
+
+	MjsCompoColorSet(TMAS290200f(Self),
+					TMASCom(m_pMyAppRecord^.m_pSystemArea^).SystemArea.SysBaseColorB,
+					TMASCom(m_pMyAppRecord^.m_pSystemArea^).SystemArea.SysBaseColorD
+	);
+
+	MjsColorChange(TMAS290200f(Self),
+					TMASCom(m_pMyAppRecord^.m_pSystemArea^).SystemArea.SysColorB,
+					TMASCom(m_pMyAppRecord^.m_pSystemArea^).SystemArea.SysColorD,
+					TMASCom(m_pMyAppRecord^.m_pSystemArea^).SystemArea.SysBaseColorB,
+					TMASCom(m_pMyAppRecord^.m_pSystemArea^).SystemArea.SysBaseColorD,
+					rcCOMMONAREA(m_pMyAppRecord^.m_pCommonArea^).SysFocusColor);
+
+	m_iZoom := MjsFontResize(TMAS290200f(Self), Pointer(m_pMyAppRecord));
+
+	m_Query := TMQuery.Create(Self);
+	m_DataModule.SetDBInfoToQuery(m_CorpConnect, m_Query);
+
+    m_MjsPre	:= TMJSPreviewIFL.Create();
+	m_MjsPre.Init(m_pMyAppRecord);
+		<span class="hljs-comment">// 会社基本ﾃﾞｰﾀｸﾗｽを生成</span>
+    m_DTMainData	:= TDTMainData.Create();
+    GetDTMain(m_DTMainData);
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component   :	Form</span>
+<span class="hljs-comment">//	Event	    :	OnActivate</span>
+<span class="hljs-comment">//	Memo		:	フォーム アクティブ</span>
+<span class="hljs-comment">//	Name	    :</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">FormActivate</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">var</span>
+	AppPara : TAppParam;
+<span class="hljs-keyword">begin</span>
+	AppPara.iAction := ACTID_ACTIVEEND;
+	AppPara.pRecord := Pointer(m_pMyAppRecord);
+	AppPara.pActionParam := <span class="hljs-keyword">nil</span>;
+
+	TMjsAppRecord( m_pMyAppRecord^ ).m_pOwnerEntry( @AppPara );
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 01/04/18追加</span>
+<span class="hljs-comment">//	Event	    :	OnShow</span>
+<span class="hljs-comment">//	Name	    :</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">FormShow</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">begin</span>
+MemdataSetSuru(dxMemData1);
+IDCount();
+<span class="hljs-comment">//</span>
+<span class="hljs-keyword">end</span>;
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//目次</span>
+<span class="hljs-comment">//・1部-プレイヤーデータベース関係</span>
+<span class="hljs-comment">//・0 IDを振る処理</span>
+<span class="hljs-comment">//・1Memデータに処理を渡す</span>
+<span class="hljs-comment">//・2作成ボタン</span>
+<span class="hljs-comment">//	・2-2 名前欄　選択時</span>
+<span class="hljs-comment">//	・2-3 プレイヤー選択時</span>
+<span class="hljs-comment">//・3変更ボタン</span>
+<span class="hljs-comment">//・4削除ボタン</span>
+<span class="hljs-comment">//・5決定ボタン</span>
+
+<span class="hljs-comment">//	ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー</span>
+
+<span class="hljs-comment">//・2部-戦歴データベース関係</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Proccess  :	0 IDを振る処理</span>
+<span class="hljs-comment">//	Name	  :	若杉泰周</span>
+<span class="hljs-comment">//	Date	  :	2022 / 9 / 27</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">IDCount</span><span class="hljs-params">()</span>;</span>
+<span class="hljs-keyword">var</span>
+	i : Integer;
+<span class="hljs-keyword">begin</span>
+	dxMemData1.DisableControls;
+	m_DataModule.BeginTran(m_CorpConnect);
+
+	<span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+	<span class="hljs-keyword">begin</span>
+		<span class="hljs-keyword">try</span>
+			dxMemData1.First;
+                <span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span> <span class="hljs-keyword">to</span> dxMemData1.RecordCount <span class="hljs-keyword">do</span>
+                <span class="hljs-keyword">begin</span>
+                    Close;
+                    SQL.Clear;
+                    SQL.Add(<span class="hljs-string">'UPDATE _PLAYER'</span>);
+                    SQL.Add(<span class="hljs-string">'SET'</span>);
+                    SQL.Add(<span class="hljs-string">'SortID = :AfterSortID'</span>);
+                    SQL.Add(<span class="hljs-string">'WHERE'</span>);
+                    SQL.Add(<span class="hljs-string">'id = :ID'</span> );
+                    SetFld(<span class="hljs-string">'AfterSortID'</span>).AsInteger := i;
+                    SetFld(<span class="hljs-string">'ID'</span>).AsInteger := dxMemData1Code.AsInteger;
+
+					<span class="hljs-keyword">if</span> ExecSQL() <span class="hljs-keyword">then</span>
+                	<span class="hljs-keyword">begin</span>
+                    	m_DataModule.Commit(m_CorpConnect);   	<span class="hljs-comment">// コミット</span>
+                	<span class="hljs-keyword">end</span>;
+					dxMemData1.Next;
+                <span class="hljs-keyword">end</span>;
+        <span class="hljs-keyword">finally</span>
+        	Close;
+			<span class="hljs-keyword">if</span> m_CorpConnect.InTransaction <span class="hljs-keyword">then</span>
+			<span class="hljs-keyword">begin</span>
+            	m_DataModule.Rollback(m_CorpConnect); 			<span class="hljs-comment">// ロールバック</span>
+				m_MASCom.m_MsgStd.GetMsgDB(m_MjsMsgRec, m_Query);
+            <span class="hljs-keyword">end</span>;
+			dxMemData1.EnableControls;
+        <span class="hljs-keyword">end</span>;
+    <span class="hljs-keyword">end</span>;
+	MemdataSetSuru(dxMemData1); <span class="hljs-comment">// 表示処理</span>
+<span class="hljs-keyword">end</span>;
+
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Proccess  :	1 Player Memデータに処理を渡す</span>
+<span class="hljs-comment">//	Name	  :	若杉泰周</span>
+<span class="hljs-comment">//	Date	  :	2022 / 9 / 27</span>
+<span class="hljs-comment">//**************************************************************************</span>
+
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">MemdataSetSuru</span><span class="hljs-params">(<span class="hljs-keyword">var</span> aMem: TdxMemData)</span>;</span>
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">begin</span>
+
+		<span class="hljs-keyword">if</span> aMem.RecordCount &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">begin</span>
+            aMem.Close();  		<span class="hljs-comment">//念のため一回閉じる</span>
+        <span class="hljs-keyword">end</span>;
+        aMem.Open();   			<span class="hljs-comment">//そして開く</span>
+        aMem.DisableControls;		<span class="hljs-comment">//描画を一旦止める処理（速度向上目的）</span>
+    	<span class="hljs-keyword">try</span>
+            Close;
+            SQL.Clear;
+
+			SQL.Add(<span class="hljs-string">'SELECT ID,SortID,NAME FROM _PLAYER'</span>);
+			SQL.Add(<span class="hljs-string">'ORDER BY'</span>);
+			SQL.Add(<span class="hljs-string">'ID'</span>);
+
+			Open(True);  		  <span class="hljs-comment">//クエリに入れたSQLを開く</span>
+
+			<span class="hljs-keyword">while</span> EOF = false <span class="hljs-keyword">do</span>  <span class="hljs-comment">//データの終端じゃなかったら代入</span>
+            <span class="hljs-keyword">begin</span>
+				aMem.Append;     <span class="hljs-comment">//追加の準備（レコードを追加</span>
+                aMem.FieldByName(<span class="hljs-string">'Code'</span>).AsInteger := GetFld(<span class="hljs-string">'ID'</span>).AsInteger;
+				aMem.FieldByName(<span class="hljs-string">'Name'</span>).AsString := GetFld(<span class="hljs-string">'NAME'</span>).AsString;
+				aMem.FieldByName(<span class="hljs-string">'ID'</span>).AsString := GetFld(<span class="hljs-string">'SortID'</span>).AsString;
+				aMem.Post;       <span class="hljs-comment">//追加完了（データ書き込み）</span>
+				Next;            <span class="hljs-comment">//終端まで続ける</span>
+            <span class="hljs-keyword">end</span>;
+
+        <span class="hljs-keyword">finally</span>
+            Close;               <span class="hljs-comment">//クエリを閉じる</span>
+			aMem.EnableControls; <span class="hljs-comment">//描画を再開する（速度向上目的）</span>
+        <span class="hljs-keyword">end</span>;
+    <span class="hljs-keyword">end</span>;
+<span class="hljs-keyword">end</span>;
+
+
+
+
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 22/09/21追加</span>
+<span class="hljs-comment">//	Event	    :	2 作成ボタン</span>
+<span class="hljs-comment">//	Name	    :       若杉泰周</span>
+<span class="hljs-comment">//**************************************************************************</span>
+
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">AddBtnClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">var</span> I : Integer;
+	S : <span class="hljs-keyword">String</span>;
+<span class="hljs-keyword">begin</span>
+	m_DataModule.BeginTran(m_CorpConnect);<span class="hljs-comment">//トランザクションの開始</span>
+	<span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+	<span class="hljs-keyword">begin</span>
+		<span class="hljs-keyword">if</span> dxMemData1.Active = False <span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">begin</span>
+            dxMemData1.Open();
+        <span class="hljs-keyword">end</span>;
+        SQL.Clear;
+		SQL.Add(<span class="hljs-string">'INSERT INTO _PLAYER (NAME,SortID) values (:Name,:SortID);'</span>);
+		SetFld(<span class="hljs-string">'Name'</span>).AsString := NameForm.Text;
+		SetFld(<span class="hljs-string">'SortID'</span>).AsInteger := dxMemData1.RecordCount+<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">if</span>(ExecSQL())<span class="hljs-keyword">then</span> ShowMessage(<span class="hljs-string">'第１段階プレイヤーデータを作成作成しました。続けます。'</span>)
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+            ShowMessage(<span class="hljs-string">'プレイヤーデータを作成できませんでした。すでに作られている可能性があります。キャンセルします。'</span>);
+            m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+			<span class="hljs-keyword">exit</span>;
+        <span class="hljs-keyword">end</span>;
+
+        SQL.Clear;
+		SQL.Add(<span class="hljs-string">'SELECT FIRST ID FROM _PLAYER ORDER BY ID DESC ;'</span>);
+		<span class="hljs-keyword">if</span>(Open())<span class="hljs-keyword">then</span> ShowMessage(<span class="hljs-string">'第２段階コードを取得しました｡続けます。'</span>)
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+            ShowMessage(<span class="hljs-string">'第２段階コードを取得できませんでした｡キャンセルします。'</span>);
+            m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+			<span class="hljs-keyword">exit</span>;
+        <span class="hljs-keyword">end</span>;
+
+		I := GetFld(<span class="hljs-string">'ID'</span>).AsInteger;
+		S := IntToStr(I);
+		SQL.Clear;
+		SQL.Add(<span class="hljs-string">'INSERT INTO _SENREKI (ID) values ('</span> +S+ <span class="hljs-string">');'</span>);
+
+
+		<span class="hljs-keyword">if</span>(ExecSQL(True))<span class="hljs-keyword">then</span> ShowMessage(<span class="hljs-string">'最終段階｡戦歴データを用意。確定します。'</span>)
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+			ShowMessage(<span class="hljs-string">'第三段階、戦歴データを作れませんでした。キャンセルします。'</span>);
+            m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+			<span class="hljs-keyword">exit</span>;
+        <span class="hljs-keyword">end</span>;
+
+		m_DataModule.Commit(m_CorpConnect);  <span class="hljs-comment">// コミット</span>
+
+        MemdataSetSuru(dxMemData1);
+
+    <span class="hljs-keyword">end</span>;
+
+<span class="hljs-keyword">end</span>;
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 22/09/21追加</span>
+<span class="hljs-comment">//	Event	    :	2-2 名前欄クリック（作成スイッチング）</span>
+<span class="hljs-comment">//	Name	    :       若杉泰周</span>
+<span class="hljs-comment">//**************************************************************************</span>
+
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">NameFormClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">begin</span>
+	ここに入力してください.Caption := <span class="hljs-string">'新しい名前を登録'</span> ;
+	Nameform.Text := <span class="hljs-string">''</span>;
+	<span class="hljs-keyword">if</span> AddBtn.visible = False <span class="hljs-keyword">then</span>
+    	AddBtn.visible := True;
+	<span class="hljs-keyword">if</span> DeleteBtn.visible = True <span class="hljs-keyword">then</span>
+    	DeleteBtn.visible := False;
+	<span class="hljs-keyword">if</span> ChangeBtn.visible = True <span class="hljs-keyword">then</span>
+    	ChangeBtn.visible := False;
+	<span class="hljs-keyword">if</span> DecideBtn.visible = True <span class="hljs-keyword">then</span>
+    	DecideBtn.visible := False;
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 22/10/3追加</span>
+<span class="hljs-comment">//	Event	    :	2-3 プレーヤーグリッドクリック（プレイヤー選択）</span>
+<span class="hljs-comment">//	Name	    :       若杉泰周</span>
+<span class="hljs-comment">//**************************************************************************</span>
+
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">dxPlayerSelect</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">begin</span>
+	ここに入力してください.Caption := <span class="hljs-string">'名前を編集する'</span> ;
+	NameForm.Text := dxMemData1Name.AsString;
+	CodeLabel.caption := IntToStr(dxMemData1Code.AsInteger);
+	<span class="hljs-keyword">if</span> AddBtn.visible = True <span class="hljs-keyword">then</span>
+    	AddBtn.visible := False;
+	<span class="hljs-keyword">if</span> DeleteBtn.visible = False <span class="hljs-keyword">then</span>
+    	DeleteBtn.visible := True;
+	<span class="hljs-keyword">if</span> ChangeBtn.visible = False <span class="hljs-keyword">then</span>
+		ChangeBtn.visible := True;
+	<span class="hljs-keyword">if</span> DecideBtn.visible = False <span class="hljs-keyword">then</span>
+    	DecideBtn.visible := True;
+    NameForm.SetFocus;
+<span class="hljs-keyword">end</span>;
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 22/09/21追加</span>
+<span class="hljs-comment">//	Event	    :	3 変更ボタン</span>
+<span class="hljs-comment">//	Name	    :       若杉泰周</span>
+<span class="hljs-comment">//**************************************************************************</span>
+
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">ChangeBtnClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">begin</span>
+
+	m_DataModule.BeginTran(m_CorpConnect);
+	<span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+	<span class="hljs-keyword">begin</span>
+        SQL.Clear;
+		SQL.Add(<span class="hljs-string">'UPDATE _PLAYER SET name =(:Name)WHERE id =(:Code) '</span>);
+		SetFld(<span class="hljs-string">'Name'</span>).AsString := NameForm.Text;
+		SetFld(<span class="hljs-string">'Code'</span>).AsInteger := dxmemdata1.FieldByName(<span class="hljs-string">'Code'</span>).AsInteger;
+		<span class="hljs-keyword">if</span>(ExecSQL())<span class="hljs-keyword">then</span> m_DataModule.Commit(m_CorpConnect)  <span class="hljs-comment">// コミット</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+            m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+        <span class="hljs-keyword">end</span>;
+		<span class="hljs-keyword">if</span> dxMemData1.Active = False <span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">begin</span>
+            dxMemData1.Open();
+        <span class="hljs-keyword">end</span>;
+        MemdataSetSuru(dxMemData1);
+
+    <span class="hljs-keyword">end</span>;
+
+<span class="hljs-keyword">end</span>;
+
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 22/09/21追加</span>
+<span class="hljs-comment">//	Event	    :	4 削除ボタン</span>
+<span class="hljs-comment">//	Name	    :       若杉泰周</span>
+<span class="hljs-comment">//**************************************************************************</span>
+
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">DeleteBtnClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">begin</span>
+
+		m_DataModule.BeginTran(m_CorpConnect);
+	<span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+	<span class="hljs-keyword">begin</span>
+        SQL.Clear;
+		SQL.Add(<span class="hljs-string">'DELETE FROM _PLAYER WHERE id =(:Code) '</span>);
+		SetFld(<span class="hljs-string">'Code'</span>).AsInteger := dxmemdata1.FieldByName(<span class="hljs-string">'Code'</span>).AsInteger;
+		<span class="hljs-keyword">if</span>(ExecSQL())<span class="hljs-keyword">then</span> m_DataModule.Commit(m_CorpConnect)  <span class="hljs-comment">// コミット</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+            m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+        <span class="hljs-keyword">end</span>;
+		<span class="hljs-keyword">if</span> dxMemData1.Active = False <span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">begin</span>
+            dxMemData1.Open();
+        <span class="hljs-keyword">end</span>;
+        MemdataSetSuru(dxMemData1);
+
+    <span class="hljs-keyword">end</span>;
+	IDCount();
+<span class="hljs-keyword">end</span>;
+
+
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 22/09/21追加</span>
+<span class="hljs-comment">//	Event	    :	5 決定ボタン＆戦績データ読み込み</span>
+<span class="hljs-comment">//	Name	    :       若杉泰周</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">DecideBtnClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">var</span> I: Integer;
+	S: <span class="hljs-keyword">String</span>;
+<span class="hljs-keyword">begin</span>
+	m_DataModule.BeginTran(m_CorpConnect);<span class="hljs-comment">//トランザクションの開始</span>
+    <span class="hljs-keyword">if</span> dxMem_SENREKI.RecordCount &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">begin</span>
+        dxMem_SENREKI.Close();  		<span class="hljs-comment">//念のため一回閉じる</span>
+    <span class="hljs-keyword">end</span>;
+    dxMem_SENREKI.Open();   			<span class="hljs-comment">//そして開く</span>
+    dxMem_SENREKI.DisableControls;		<span class="hljs-comment">//描画を一旦止める処理（速度向上目的）</span>
+
+	S := dxMemData1Code.AsString;
+	<span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+	<span class="hljs-keyword">begin</span>
+        SQL.Clear;
+		SQL.Add(<span class="hljs-string">'SELECT Num,SeriouslyLevel,DrowNo,Hand,SYOUHAI,YOI FROM _SENREKI'</span>);
+		SQL.Add(<span class="hljs-string">'WHERE ID ='</span>+ S +<span class="hljs-string">'ORDER BY ID DESC ;'</span>);
+		<span class="hljs-keyword">if</span>(Open(True))<span class="hljs-keyword">then</span>
+		<span class="hljs-keyword">begin</span>
+            m_DataModule.Commit(m_CorpConnect);  <span class="hljs-comment">// コミット</span>
+		<span class="hljs-keyword">end</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+            ShowMessage(<span class="hljs-string">'選択中のプレイヤーの戦績データを取得できませんでした。キャンセルします。'</span>);
+            m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+			<span class="hljs-keyword">exit</span>;
+        <span class="hljs-keyword">end</span>;
+
+        <span class="hljs-keyword">while</span> EOF = false <span class="hljs-keyword">do</span>  <span class="hljs-comment">//データの終端でなければ実行</span>
+        <span class="hljs-keyword">begin</span>
+            dxMem_SENREKI.Append;     <span class="hljs-comment">//追加の準備（レコードを追加</span>
+            dxMem_SENREKI.FieldByName(<span class="hljs-string">'Num'</span>).AsInteger := GetFld(<span class="hljs-string">'Num'</span>).AsInteger;
+            dxMem_SENREKI.FieldByName(<span class="hljs-string">'SeriouslyLevel'</span>).AsString := GetFld(<span class="hljs-string">'SeriouslyLevel'</span>).AsString;
+            dxMem_SENREKI.FieldByName(<span class="hljs-string">'DrowNo'</span>).AsInteger := GetFld(<span class="hljs-string">'DrowNo'</span>).AsInteger;
+            dxMem_SENREKI.FieldByName(<span class="hljs-string">'Hand'</span>).AsString := GetFld(<span class="hljs-string">'Hand'</span>).AsString;
+			dxMem_SENREKI.FieldByName(<span class="hljs-string">'SYOUHAI'</span>).AsString := GetFld(<span class="hljs-string">'SYOUHAI'</span>).AsString;
+			dxMem_SENREKI.FieldByName(<span class="hljs-string">'YOI'</span>).AsString := GetFld(<span class="hljs-string">'YOI'</span>).AsString;
+            dxMem_SENREKI.Post;       <span class="hljs-comment">//追加完了（データ書き込み）</span>
+            Next;            <span class="hljs-comment">//終端まで続ける</span>
+        <span class="hljs-keyword">end</span>;
+    	Close;               <span class="hljs-comment">//クエリを閉じる</span>
+		dxMem_SENREKI.EnableControls; <span class="hljs-comment">//描画を再開する（速度向上目的）</span>
+		<span class="hljs-keyword">if</span> dxMem_SENREKI.RecordCount = <span class="hljs-number">0</span> <span class="hljs-keyword">then</span>
+        	ShowMessage(<span class="hljs-string">'データがまだありませんでした'</span>);
+      <span class="hljs-keyword">end</span>;
+		<span class="hljs-comment">//画面切り替え</span>
+		dxDBGrid2.visible := True;
+        dxDBGrid1.visible := False;
+		BackBtn.visible := True;
+		DecideBtn.visible := False;
+		ChangeBtn.visible := False;
+		DeleteBtn.visible := False;
+		DeleteBtn.visible := False;
+        MEkakusi.visible := False;
+		Bunseki();
+
+<span class="hljs-keyword">end</span>;
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 22/09/21追加</span>
+<span class="hljs-comment">//	Event	    :	6 戻るボタン</span>
+<span class="hljs-comment">//	Name	    :       若杉泰周</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">BackBtnclick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">begin</span>
+	<span class="hljs-keyword">if</span> dxMem_SENREKI.RecordCount &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">begin</span>
+        dxMem_SENREKI.Close();  		<span class="hljs-comment">//戦歴データを閉じる。</span>
+    <span class="hljs-keyword">end</span>;
+	dxDBGrid2.visible := False;
+    dxDBGrid1.visible := True;
+    DecideBtn.visible := True;
+	BackBtn.visible := False;
+    DecideBtn.visible := True;
+    ChangeBtn.visible := True;
+    DeleteBtn.visible := True;
+    MEkakusi.visible  := True;
+<span class="hljs-keyword">end</span>;
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//目次</span>
+<span class="hljs-comment">//・1部-プレイヤーデータベース関係</span>
+<span class="hljs-comment">//	ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー</span>
+
+<span class="hljs-comment">//・2部-戦歴データベース関係</span>
+
+<span class="hljs-comment">//・2-1戦歴データ登録</span>
+<span class="hljs-comment">//・2-2 勝ち負け判定</span>
+<span class="hljs-comment">//・2-3 データ分析</span>
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 22/10/3追加</span>
+<span class="hljs-comment">//	Event	    :	2-1戦歴データ登録</span>
+<span class="hljs-comment">//	Name	    :       若杉泰周</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">SENREKIdataTOUROKU</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">var</span> I : Integer;
+	PlayerCode : <span class="hljs-keyword">String</span>;
+	MaxNum: <span class="hljs-keyword">string</span>;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-comment">//	真剣度</span>
+    <span class="hljs-keyword">if</span> SinkenBtn3.checked =true <span class="hljs-keyword">then</span>        m_sSinkenLv:=<span class="hljs-string">'''ガチ'''</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> SinkenBtn2.checked =true <span class="hljs-keyword">then</span>   m_sSinkenLv:=<span class="hljs-string">'''普通'''</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> SinkenBtn1.checked =true <span class="hljs-keyword">then</span>   m_sSinkenLv:=<span class="hljs-string">'''適当'''</span>;
+
+    <span class="hljs-comment">//酔い</span>
+    <span class="hljs-keyword">if</span> YoiBox.text =<span class="hljs-string">'なし'</span> <span class="hljs-keyword">then</span>             m_sYoiLv :=<span class="hljs-string">'''なし'''</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> YoiBox.text =<span class="hljs-string">'ほろ酔い'</span> <span class="hljs-keyword">then</span>    m_sYoiLv :=<span class="hljs-string">'''ほろ酔い'''</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> YoiBox.text =<span class="hljs-string">'べろべろ'</span> <span class="hljs-keyword">then</span>    m_sYoiLv :=<span class="hljs-string">'''べろべろ'''</span>;
+
+    <span class="hljs-comment">//何手目</span>
+    <span class="hljs-keyword">if</span> DrowNoBox.text =<span class="hljs-string">'１手目'</span> <span class="hljs-keyword">then</span>         m_sDrowNo  :=<span class="hljs-string">'1'</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> DrowNoBox.text =<span class="hljs-string">'２手目'</span> <span class="hljs-keyword">then</span>    m_sDrowNo  :=<span class="hljs-string">'2'</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> DrowNoBox.text =<span class="hljs-string">'３手目'</span> <span class="hljs-keyword">then</span>    m_sDrowNo  :=<span class="hljs-string">'3'</span>;
+	<span class="hljs-comment">//勝敗がつくまで更新する</span>
+	m_iDrowNo:= m_iDrowNo +<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">if</span> m_iDrowNo=<span class="hljs-number">1</span> <span class="hljs-keyword">then</span> DrowNoBox.text :=<span class="hljs-string">'２手目'</span>
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> m_iDrowNo=<span class="hljs-number">2</span> <span class="hljs-keyword">then</span> DrowNoBox.text :=<span class="hljs-string">'３手目'</span>;
+
+
+    <span class="hljs-comment">//手</span>
+    <span class="hljs-keyword">if</span> TButton(Sender).Caption =<span class="hljs-string">'グー'</span>        <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">begin</span>
+         M_sHand :=<span class="hljs-string">'''グー'''</span>;
+		HandText.Text := <span class="hljs-string">'グー'</span>;
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> TButton(Sender).Caption =<span class="hljs-string">'チョキ'</span> <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">begin</span>
+         M_sHand :=<span class="hljs-string">'''チョキ'''</span>;
+		HandText.Text := <span class="hljs-string">'チョキ'</span>;
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> TButton(Sender).Caption =<span class="hljs-string">'パー'</span>   <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">begin</span>
+        M_sHand :=<span class="hljs-string">'''パー'''</span>;;
+		HandText.Text := <span class="hljs-string">'グー'</span>;
+    <span class="hljs-keyword">end</span>;
+
+    <span class="hljs-comment">//勝敗</span>
+	SYOUHAIlabel.Text := <span class="hljs-string">'あいこ'</span>;
+
+    <span class="hljs-comment">//SQL</span>
+    <span class="hljs-comment">//トランザクションの開始</span>
+	m_DataModule.BeginTran(m_CorpConnect);
+	<span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+	<span class="hljs-keyword">begin</span>
+	<span class="hljs-comment">//プレイヤーコード（ID）の取得</span>
+		PlayerCode := dxMemData1Code.AsString;
+	<span class="hljs-comment">//プレイヤーの戦歴数（Num）の取得</span>
+        SQL.Clear;
+		SQL.Add(<span class="hljs-string">'SELECT FIRST Num FROM _SENREKI WHERE ID = '</span>+PlayerCode+<span class="hljs-string">' ORDER BY Num DESC ;'</span>);
+	<span class="hljs-comment">//SQL実行判定</span>
+		<span class="hljs-keyword">if</span>(Open())<span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+            ShowMessage(<span class="hljs-string">'プレイヤー戦歴データ数を取得できませんでした｡キャンセルします。'</span>);
+            m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+			<span class="hljs-keyword">exit</span>;
+        <span class="hljs-keyword">end</span>;
+		I := GetFld(<span class="hljs-string">'Num'</span>).AsInteger+<span class="hljs-number">1</span>;
+		MaxNum := IntToStr(I);
+
+        SQL.Clear;
+		SQL.Add(<span class="hljs-string">'INSERT INTO _SENREKI (ID,Num,SYOUHAI,Hand,SeriouslyLevel,DrowNo,YOI) values ('</span>);<span class="hljs-comment">//データベース入力部分</span>
+		SQL.Add(<span class="hljs-string">''</span>+ PlayerCode +<span class="hljs-string">','</span>);                                                    <span class="hljs-comment">//ID</span>
+		SQL.Add(MaxNum +<span class="hljs-string">','</span>);                                                   <span class="hljs-comment">//Num（その人のデータ数）</span>
+		SQL.Add(<span class="hljs-string">'''あいこ'''</span>+<span class="hljs-string">','</span>);                                              <span class="hljs-comment">//勝敗</span>
+		SQL.Add(m_sHand +<span class="hljs-string">','</span>);                                                  <span class="hljs-comment">//手</span>
+		SQL.Add(m_SSinkenLv+<span class="hljs-string">','</span>);                                               <span class="hljs-comment">//真剣度</span>
+		SQL.Add(m_sDrowNo+<span class="hljs-string">','</span>);                                                 <span class="hljs-comment">//何手目</span>
+		SQL.Add(m_sYoiLv+<span class="hljs-string">');'</span>);                                                 <span class="hljs-comment">//酔い</span>
+
+		<span class="hljs-keyword">if</span>(ExecSQL(true))<span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+            ShowMessage(<span class="hljs-string">'データを作成できませんでした。キャンセルします。'</span>);
+            m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+			<span class="hljs-keyword">exit</span>;
+        <span class="hljs-keyword">end</span>;
+
+
+		m_DataModule.Commit(m_CorpConnect);  <span class="hljs-comment">// コミット</span>
+        DecideBtnClick(Sender);
+
+    <span class="hljs-keyword">end</span>;
+
+<span class="hljs-keyword">end</span>;
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 22/10/3追加</span>
+<span class="hljs-comment">//	Event	    :	2-2 勝ち負け判定</span>
+<span class="hljs-comment">//	Name	    :       若杉泰周</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">WinBtnClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">var</span> I : Integer;
+	PlayerCode : <span class="hljs-keyword">String</span>;
+	MaxNum: <span class="hljs-keyword">string</span>;
+	m_sSYOUHAI : <span class="hljs-keyword">string</span>;
+<span class="hljs-keyword">begin</span>
+	<span class="hljs-comment">//勝ちか負けを変数に入れる</span>
+	m_sSYOUHAI:= <span class="hljs-string">''''</span>+TBUtton(Sender).caption+<span class="hljs-string">''''</span>;
+	 <span class="hljs-comment">//SQL</span>
+    <span class="hljs-comment">//トランザクションの開始</span>
+	m_DataModule.BeginTran(m_CorpConnect);
+	<span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+	<span class="hljs-keyword">begin</span>
+	<span class="hljs-comment">//プレイヤーコード（ID）の取得</span>
+		PlayerCode := dxMemData1Code.AsString;
+	<span class="hljs-comment">//プレイヤーの戦歴数（Num）の取得</span>
+        SQL.Clear;
+		SQL.Add(<span class="hljs-string">'SELECT FIRST Num FROM _SENREKI WHERE ID = '</span>+PlayerCode+<span class="hljs-string">' ORDER BY Num DESC ;'</span>);
+	<span class="hljs-comment">//SQL実行判定</span>
+		<span class="hljs-keyword">if</span>(Open())<span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+            ShowMessage(<span class="hljs-string">'プレイヤー戦歴データ数を取得できませんでした｡キャンセルします。'</span>);
+            m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+			<span class="hljs-keyword">exit</span>;
+        <span class="hljs-keyword">end</span>;
+		I := GetFld(<span class="hljs-string">'Num'</span>).AsInteger;
+		MaxNum := IntToStr(I);
+        CodeLabel.caption := MaxNum;
+        SQL.Clear;
+		SQL.Add(<span class="hljs-string">'UPDATE _SENREKI SET SYOUHAI='</span>+m_sSYOUHAI);
+		SQL.Add(<span class="hljs-string">'WHERE ID ='</span>+ PlayerCode +<span class="hljs-string">'AND Num='</span>+ MaxNum);
+
+		<span class="hljs-keyword">if</span>(ExecSQL())<span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+            ShowMessage(<span class="hljs-string">'勝敗を更新できませんでした。キャンセルします。'</span>);
+            m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+			<span class="hljs-keyword">exit</span>;
+        <span class="hljs-keyword">end</span>;
+		SYOUHAIlabel.text:= TBUtton(Sender).caption;
+		m_DataModule.Commit(m_CorpConnect);  <span class="hljs-comment">// コミット</span>
+        DecideBtnClick(Sender);
+
+    <span class="hljs-keyword">end</span>;
+	<span class="hljs-comment">//引き分け回数をリセット</span>
+	m_iDrowNo:= <span class="hljs-number">0</span>;
+	DrowNoBox.text :=<span class="hljs-string">'１手目'</span>;
+
+
+
+<span class="hljs-keyword">end</span>;
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 22/10/3追加</span>
+<span class="hljs-comment">//	Event	    :	2-3 データ分析</span>
+<span class="hljs-comment">//	Name	    :       若杉泰周</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">Bunseki</span><span class="hljs-params">()</span>;</span>
+<span class="hljs-keyword">var</span> I : Integer;
+	PlayerCode : <span class="hljs-keyword">String</span>;
+	MaxNum: <span class="hljs-keyword">string</span>;
+
+	Colum: <span class="hljs-keyword">string</span>;
+<span class="hljs-keyword">begin</span>
+	<span class="hljs-comment">//プレイヤーコード（ID）の取得</span>
+	PlayerCode := dxMemData1Code.AsString;
+	m_iMAX:=<span class="hljs-number">0</span>;
+    <span class="hljs-keyword">if</span> dxMem_Bunseki.RecordCount &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">begin</span>
+        dxMem_Bunseki.Close();  		<span class="hljs-comment">//念のため一回閉じる</span>
+    <span class="hljs-keyword">end</span>;
+    dxMem_Bunseki.Open();
+	dxMem_Bunseki.DisableControls;		<span class="hljs-comment">//描画を一旦止める処理（速度向上目的）</span>
+    <span class="hljs-comment">//トランザクションの開始</span>
+	m_DataModule.BeginTran(m_CorpConnect);
+	<span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+	<span class="hljs-keyword">begin</span>
+<span class="hljs-comment">//手の数を取得</span>
+        dxMem_Bunseki.Append;
+        BunsekiSQL(<span class="hljs-string">'グー'</span>,<span class="hljs-string">''</span>,m_iMAX,<span class="hljs-string">'Gu'</span>);
+        BunsekiSQL(<span class="hljs-string">'チョキ'</span>,<span class="hljs-string">''</span>,m_iMAX,<span class="hljs-string">'Tyoki'</span>);
+        BunsekiSQL(<span class="hljs-string">'パー'</span>,<span class="hljs-string">''</span>,m_iMAX,<span class="hljs-string">'Pa'</span>);
+        SQL.Clear;
+        SQL.Add(<span class="hljs-string">'SELECT Hand,COUNT(Num)AS 数 FROM _SENREKI WHERE ID = '</span>+PlayerCode+<span class="hljs-string">'GROUP BY Hand ORDER BY 数 DESC;'</span>);
+        Open();
+        dxMem_Bunseki.FieldByName(<span class="hljs-string">'Most'</span>).AsString:=GetFld(<span class="hljs-string">'Hand'</span>).AsString;
+        dxMem_Bunseki.Post;
+<span class="hljs-comment">//-------------------------------------------</span>
+        dxMem_Bunseki.Append;
+        BunsekiSQL(<span class="hljs-string">'グー'</span>,<span class="hljs-string">'AND DrowNo = 1'</span>,m_iMAX,<span class="hljs-string">'Gu'</span>);
+        BunsekiSQL(<span class="hljs-string">'チョキ'</span>,<span class="hljs-string">'AND DrowNo = 1'</span>,m_iMAX,<span class="hljs-string">'Tyoki'</span>);
+        BunsekiSQL(<span class="hljs-string">'パー'</span>,<span class="hljs-string">'AND DrowNo = 1'</span>,m_iMAX,<span class="hljs-string">'Pa'</span>);
+		SQL.Clear;
+        SQL.Add(<span class="hljs-string">'SELECT Hand,COUNT(Num)AS 数 FROM _SENREKI WHERE ID = '</span>+PlayerCode+<span class="hljs-string">'AND DrowNo = 1 GROUP BY Hand ORDER BY 数 DESC;'</span>);
+        Open();
+        dxMem_Bunseki.FieldByName(<span class="hljs-string">'Most'</span>).AsString:=GetFld(<span class="hljs-string">'Hand'</span>).AsString;
+        dxMem_Bunseki.Post;
+<span class="hljs-comment">//-------------------------------------------</span>
+        dxMem_Bunseki.Append;
+        BunsekiSQL(<span class="hljs-string">'グー'</span>,<span class="hljs-string">'AND DrowNo = 2'</span>,m_iMAX,<span class="hljs-string">'Gu'</span>);
+        BunsekiSQL(<span class="hljs-string">'チョキ'</span>,<span class="hljs-string">'AND DrowNo = 2'</span>,m_iMAX,<span class="hljs-string">'Tyoki'</span>);
+        BunsekiSQL(<span class="hljs-string">'パー'</span>,<span class="hljs-string">'AND DrowNo = 2'</span>,m_iMAX,<span class="hljs-string">'Pa'</span>);
+		SQL.Clear;
+        SQL.Add(<span class="hljs-string">'SELECT Hand,COUNT(Num)AS 数 FROM _SENREKI WHERE ID = '</span>+PlayerCode+<span class="hljs-string">'AND DrowNo = 2 GROUP BY Hand ORDER BY 数 DESC;'</span>);
+        Open();
+        dxMem_Bunseki.FieldByName(<span class="hljs-string">'Most'</span>).AsString:=GetFld(<span class="hljs-string">'Hand'</span>).AsString;
+        dxMem_Bunseki.Post;
+<span class="hljs-comment">//-------------------------------------------</span>
+        dxMem_Bunseki.Append;
+        BunsekiSQL(<span class="hljs-string">'グー'</span>,<span class="hljs-string">'AND DrowNo = 3'</span>,m_iMAX,<span class="hljs-string">'Gu'</span>);
+        BunsekiSQL(<span class="hljs-string">'チョキ'</span>,<span class="hljs-string">'AND DrowNo = 3'</span>,m_iMAX,<span class="hljs-string">'Tyoki'</span>);
+        BunsekiSQL(<span class="hljs-string">'パー'</span>,<span class="hljs-string">'AND DrowNo = 3'</span>,m_iMAX,<span class="hljs-string">'Pa'</span>);
+		SQL.Clear;
+        SQL.Add(<span class="hljs-string">'SELECT Hand,COUNT(Num)AS 数 FROM _SENREKI WHERE ID = '</span>+PlayerCode+<span class="hljs-string">'AND DrowNo = 3 GROUP BY Hand ORDER BY 数 DESC;'</span>);
+        Open();
+        dxMem_Bunseki.FieldByName(<span class="hljs-string">'Most'</span>).AsString:=GetFld(<span class="hljs-string">'Hand'</span>).AsString;
+        dxMem_Bunseki.Post;
+    <span class="hljs-keyword">end</span>;
+
+	dxMem_Bunseki.EnableControls; <span class="hljs-comment">//描画を再開する（速度向上目的）</span>
+	m_DataModule.Commit(m_CorpConnect);  <span class="hljs-comment">// コミット</span>
+ <span class="hljs-comment">// dxMem_Bunseki.close();</span>
+
+
+
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">BunsekiSQL</span><span class="hljs-params">(Hand,ZYOUKEN:<span class="hljs-keyword">string</span>; m_iMAX:Integer; Colum: <span class="hljs-keyword">string</span>)</span>;</span>
+<span class="hljs-keyword">var</span> I : Integer;
+	PlayerCode,A: <span class="hljs-keyword">String</span>;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-comment">//SQL</span>
+	<span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+	<span class="hljs-keyword">begin</span>
+	<span class="hljs-comment">//プレイヤーコード（ID）の取得</span>
+		PlayerCode := dxMemData1Code.AsString;
+	<span class="hljs-comment">//手の数を取得</span>
+        SQL.Clear;
+		SQL.Add(<span class="hljs-string">'SELECT Hand,COUNT(Num)AS 数 FROM _SENREKI WHERE ID = '</span>+PlayerCode+<span class="hljs-string">' AND Hand='''</span>+Hand+<span class="hljs-string">''''</span>+ZYOUKEN+<span class="hljs-string">' GROUP BY Hand;'</span>);
+	<span class="hljs-comment">//SQL実行判定</span>
+		<span class="hljs-keyword">if</span>(Open())<span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+            ShowMessage(Hand+<span class="hljs-string">'の数を取得できませんでした｡キャンセルします。'</span>);
+            m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+			<span class="hljs-keyword">exit</span>;
+        <span class="hljs-keyword">end</span>;
+        A := GetFld(<span class="hljs-string">'Hand'</span>).AsString;
+        <span class="hljs-keyword">if</span> A =Hand <span class="hljs-keyword">then</span>
+		<span class="hljs-keyword">begin</span>
+			I:= StrToInt(GetFld(<span class="hljs-string">'数'</span>).AsString);
+        	dxMem_Bunseki.FieldByName(Colum).AsString:=GetFld(<span class="hljs-string">'数'</span>).AsString;
+            <span class="hljs-keyword">if</span> m_iMAX&lt; I <span class="hljs-keyword">then</span>
+				m_iMAX:= I
+        <span class="hljs-keyword">end</span>
+        <span class="hljs-keyword">else</span>
+            dxMem_Bunseki.FieldByName(Colum).AsString:=<span class="hljs-string">'0'</span>;
+    <span class="hljs-keyword">end</span>;
+<span class="hljs-keyword">end</span>;
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form // 00/11/01追加</span>
+<span class="hljs-comment">//	Event	    :	OnHide</span>
+<span class="hljs-comment">//	Name	    :</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">FormHide</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">begin</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form</span>
+<span class="hljs-comment">//	Event	    :	OnCloseQuery</span>
+<span class="hljs-comment">//	Name	    :</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">FormCloseQuery</span><span class="hljs-params">(Sender: TObject;
+  <span class="hljs-keyword">var</span> CanClose: Boolean)</span>;</span>
+<span class="hljs-keyword">begin</span>
+	CanClose := True;
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Form</span>
+<span class="hljs-comment">//	Event		:	OnClose</span>
+<span class="hljs-comment">//	Name		:</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">FormClose</span><span class="hljs-params">(Sender: TObject; <span class="hljs-keyword">var</span> Action: TCloseAction)</span>;</span>
+<span class="hljs-keyword">var</span>
+	AppPara	:	TAppParam;
+<span class="hljs-keyword">begin</span>
+	m_pMyAppRecord^.m_iDelete := <span class="hljs-number">1</span>;
+	AppPara.iAction			  := ACTID_FORMCLOSEEND;			<span class="hljs-comment">// 呼び出し区分 設定</span>
+	AppPara.pRecord			  := Pointer(m_pMyAppRecord);		<span class="hljs-comment">// 管理構造体ﾎﾟｲﾝﾀ設定</span>
+	AppPara.pActionParam	  := <span class="hljs-keyword">nil</span>;							<span class="hljs-comment">// 予備ﾎﾟｲﾝﾀ 設定</span>
+
+	TMjsAppRecord(m_pMyAppRecord^).m_pOwnerEntry(@AppPara);		<span class="hljs-comment">// 親を呼び出す!!</span>
+
+	Action := caFree;
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Proccess  :	CM_CHILDKEY</span>
+<span class="hljs-comment">//	Name	  :</span>
+<span class="hljs-comment">//	Date	  :	2001 / 06 / 05</span>
+<span class="hljs-comment">//	Parameter :	Msg		TWMKey</span>
+<span class="hljs-comment">//	Retrun	  :</span>
+<span class="hljs-comment">//	History	  :	2001 / 99 / 99	X.Xxxxxx</span>
+<span class="hljs-comment">//				XXXXXXXX修正内容</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">CMChildKey</span><span class="hljs-params">(<span class="hljs-keyword">var</span> Msg: TWMKey)</span>;</span>
+<span class="hljs-keyword">var</span>
+	sShift		:	TShiftState;
+	twAcCtrl	:	TWinControl;
+<span class="hljs-keyword">begin</span>
+	sShift := MJSKeyDataToShiftState(Msg.KeyData);			<span class="hljs-comment">// Shiftｷｰの取得&lt;ML30063&gt; MOD KeyDataToShiftState</span>
+
+	<span class="hljs-keyword">if</span> GetKeyState(VK_MENU) &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">then</span>						<span class="hljs-comment">// Altキーをひろう</span>
+		<span class="hljs-keyword">Exit</span>;
+
+	twAcCtrl := Screen.ActiveControl;
+	<span class="hljs-keyword">if</span> twAcCtrl <span class="hljs-keyword">is</span> TSelectStrGrid <span class="hljs-keyword">then</span>						<span class="hljs-comment">// TMNumEditのItemsが開いている？</span>
+		<span class="hljs-keyword">Exit</span>;
+
+	m_AcControl := Screen.ActiveControl;
+
+	<span class="hljs-keyword">inherited</span>;
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Sb_End</span>
+<span class="hljs-comment">//	Event		:	OnClick</span>
+<span class="hljs-comment">//	Name		:</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">Sb_EndClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">begin</span>
+	Close;
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">Sb_MainClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">begin</span>
+
+<span class="hljs-keyword">end</span>;
+
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Proccess  :	会社基本情報読込処理</span>
+<span class="hljs-comment">//	Name	  :	 Y.Yanagihara</span>
+<span class="hljs-comment">//	Date	  :	2021/ 08 / 20</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">GetDTMain</span><span class="hljs-params">(<span class="hljs-keyword">var</span> aDTMainData: TDTMainData)</span>;</span>
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">begin</span>
+    	<span class="hljs-keyword">try</span>
+            Close;
+            SQL.Clear;
+            SQL.Add(<span class="hljs-string">'SELECT'</span>);
+            SQL.Add(<span class="hljs-string">' YearKbn'</span>);
+            SQL.Add(<span class="hljs-string">',ComKbn2'</span>);
+            SQL.Add(<span class="hljs-string">',ComKbn3'</span>);
+            SQL.Add(<span class="hljs-string">',DTName7'</span>);
+            SQL.Add(<span class="hljs-string">'FROM'</span>);
+            SQL.Add(<span class="hljs-string">' DTMain'</span>);
+
+            Open(True);
+
+            <span class="hljs-keyword">if</span> (EOF = False) <span class="hljs-keyword">then</span>
+            <span class="hljs-keyword">begin</span>
+				aDTMainData.YearKbn := GetFld(<span class="hljs-string">'YearKbn'</span>).AsInteger;
+                aDTMainData.ComKbn2	:= GetFld(<span class="hljs-string">'ComKbn2'</span>).AsInteger;
+                aDTMainData.ComKbn3	:= GetFld(<span class="hljs-string">'ComKbn3'</span>).AsInteger;
+                aDTMainData.DTName7	:= GetFld(<span class="hljs-string">'DTName7'</span>).AsString;
+            <span class="hljs-keyword">end</span>;
+        <span class="hljs-keyword">finally</span>
+            Close;
+        <span class="hljs-keyword">end</span>;
+    <span class="hljs-keyword">end</span>;
+<span class="hljs-keyword">end</span>;
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Proccess  :	印刷処理</span>
+<span class="hljs-comment">//	Name	  : Y.Yanagihara</span>
+<span class="hljs-comment">//	Date	  :	2021/ 08 / 20</span>
+<span class="hljs-comment">//**************************************************************************　</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">Sb_PrintClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">var</span>
+    oMjsPrnDlg : TMJSPrnDlgLf;      <span class="hljs-comment">// 印刷条件設定DLG</span>
+    iRet_Prn	: Integer;
+    sTitle, sMemFld : TStringList;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-comment">// 印刷用Memdataをセットする</span>
+	<span class="hljs-keyword">if</span> (dxMemData_Print.RecordCount &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">then</span>
+        dxMemData_Print.Close;
+	MemdataSetSuru(dxMemData_Print);
+    dxMemData_Print.First;
+
+    <span class="hljs-comment">// ﾃﾞｰﾀなしならﾒｯｾｰｼﾞ表示して抜ける</span>
+    <span class="hljs-keyword">if</span> (dxMemData_Print.RecordCount = <span class="hljs-number">0</span>) <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">begin</span>
+        MjsMessageBoxEx(m_Owner, <span class="hljs-string">'対象データが存在しません。'</span>, <span class="hljs-string">'確認'</span>, mjInformation, mjOk, mjDefOk);
+        <span class="hljs-keyword">Exit</span>;
+    <span class="hljs-keyword">end</span>;
+
+	m_PrnSupport := TMJSPrnSupportL.Create;
+    oMJSPrnDlg := TMJSPrnDlgLf.Create(m_Owner);
+    <span class="hljs-keyword">try</span>
+        m_PrnSupport.ApRB			:=	ppReport1;
+        m_PrnSupport.strDocName		:=	(<span class="hljs-string">'原価率登録'</span>);
+        m_PrnSupport.pPage			:=	SVppPage;
+        m_PrnSupport.pDate			:=	SVppDate;
+        m_PrnSupport.pCorpCode		:=	LppCorpCode;
+        m_PrnSupport.pCorpName		:=	LppCorpName;
+        m_PrnSupport.pAccountOffice	:=	LppAccOffice;
+        m_PrnSupport.iReportID		:=  <span class="hljs-number">990100</span>;			<span class="hljs-comment">// ﾁｪｯｸﾘｽﾄ系</span>
+        m_PrnSupport.strFileName    :=	rcCOMMONAREA(m_pMyAppRecord^.m_pCommonArea^).SysCliRoot + <span class="hljs-string">'\tmp\'</span> + m_PrnSupport.strDocName + <span class="hljs-string">'.csv'</span>;
+        m_PrnSupport.pComArea 		:=  m_pMyAppRecord^.m_pCommonArea;
+        m_PrnSupport.pApRec			:=  m_pMyAppRecord;
+        m_PrnSupport.MdataModule    :=	m_DataModule;   <span class="hljs-comment">//m_DataModule</span>
+        m_PrnSupport.iDspWriteBtn   :=  <span class="hljs-number">0</span>;              <span class="hljs-comment">// 保存ﾎﾞﾀﾝ制御(0:表示する)</span>
+        m_PrnSupport.iDspFileBtn    :=	<span class="hljs-number">1</span>;              <span class="hljs-comment">// ﾌｧｲﾙ出力表示</span>
+
+        <span class="hljs-keyword">if</span> ( m_DTMainData.YearKbn = YEARKBN_WAREKI ) <span class="hljs-keyword">then</span>
+            m_PrnSupport.iCalendarKbn	:=  <span class="hljs-number">1</span>	<span class="hljs-comment">//　和暦</span>
+        <span class="hljs-keyword">else</span>
+            m_PrnSupport.iCalendarKbn	:=  <span class="hljs-number">2</span>;	<span class="hljs-comment">//　西暦</span>
+
+		gfnMasSetPrnInfo (m_PrnSupport,m_Query );
+
+        <span class="hljs-comment">// 印刷ﾀﾞｲｱﾛｸﾞ表示</span>
+        iRet_Prn := oMjsPrnDlg.DoDLG(m_PrnSupport);
+
+        <span class="hljs-keyword">if</span> ( iRet_Prn &gt; <span class="hljs-number">0</span> ) <span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">begin</span>
+            <span class="hljs-comment">// 戻り値が「ﾌﾟﾚﾋﾞｭｰ」かつ、他のAPでﾌﾟﾚﾋﾞｭｰ起動中はｴﾗｰ</span>
+            <span class="hljs-keyword">if</span> (m_MjsPre.IsExistPreview) <span class="hljs-keyword">and</span>
+               (m_PrnSupport.iCommand = PDLG_PREVIEW) <span class="hljs-keyword">then</span>
+            <span class="hljs-keyword">begin</span>
+                MessageBeep(MB_OK);
+                MjsMessageBox(m_Owner, <span class="hljs-string">'他の処理でプレビューが起動しています。'</span>+<span class="hljs-string">#13#10</span>+
+                                    <span class="hljs-string">'他のプレビューを終了してください。'</span>,
+                            mjInformation, mjDefOk);
+                <span class="hljs-keyword">Exit</span>;
+            <span class="hljs-keyword">end</span>;
+
+            <span class="hljs-keyword">case</span> m_PrnSupport.iCommand <span class="hljs-keyword">of</span>
+            PDLG_PRINT, PDLG_PREVIEW:
+                <span class="hljs-keyword">begin</span>
+                    m_MjsPre.Exec(m_PrnSupport, oMJSPrnDlg, <span class="hljs-keyword">Nil</span>);
+                <span class="hljs-keyword">end</span>;
+            PDLG_FILE:
+                <span class="hljs-keyword">begin</span>
+                    sTitle	:= TStringList.Create;
+                    sMemFld := TStringList.Create;
+
+                    <span class="hljs-keyword">try</span>
+                        SetFileOut(sTitle,sMemFld);
+                        <span class="hljs-keyword">if</span> (MjsFileOutL(dxMemData_Print, sMemFld, sTitle,
+                                       m_PrnSupport, m_pMyAppRecord ) = RET_NG) <span class="hljs-keyword">then</span>
+                        <span class="hljs-keyword">begin</span>
+                           MessageBeep(MB_OK);
+                           MessageDlg(<span class="hljs-string">'ファイル出力に失敗しました。'</span>, mtError, [mbOk], <span class="hljs-number">0</span>);
+                        <span class="hljs-keyword">end</span>;
+                    <span class="hljs-keyword">finally</span>
+                        sTitle.Free;
+                        sMemFld.Free;
+                    <span class="hljs-keyword">end</span>;
+                <span class="hljs-keyword">end</span>;
+            <span class="hljs-keyword">end</span>;
+        <span class="hljs-keyword">end</span>;
+    <span class="hljs-keyword">finally</span>
+		<span class="hljs-keyword">if</span> Assigned(m_PrnSupport) <span class="hljs-keyword">then</span>
+        	m_PrnSupport.Free;
+        <span class="hljs-keyword">if</span> Assigned(oMjsPrnDlg) <span class="hljs-keyword">then</span>
+        	oMjsPrnDlg.Free;
+    <span class="hljs-keyword">end</span>;
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-comment">//	Component	:	Sb_Change</span>
+<span class="hljs-comment">//	Event		:	OnClick</span>
+<span class="hljs-comment">//	Name		:</span>
+<span class="hljs-comment">//**************************************************************************</span>
+<span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">Sb_ChangeClick</span><span class="hljs-params">(Sender: TObject)</span>;</span>
+<span class="hljs-keyword">var</span>
+	wkParam : TAppParam;
+	iAction : Integer;
+<span class="hljs-keyword">begin</span>
+	<span class="hljs-comment">// 切り出し</span>
+	<span class="hljs-keyword">if</span> CompareStr(Sb_Change.Caption,<span class="hljs-string">'切出(&amp;G)'</span>) = <span class="hljs-number">0</span> <span class="hljs-keyword">then</span>
+	<span class="hljs-keyword">begin</span>
+		Sb_Change.Caption := <span class="hljs-string">'埋込(&amp;G)'</span>;
+		ClientHeight := Trunc(<span class="hljs-number">622</span> * m_iZoom / <span class="hljs-number">100</span>);
+		ClientWidth  := Trunc(<span class="hljs-number">945</span> * m_iZoom / <span class="hljs-number">100</span>);
+		iAction      := ACTID_DOCKINGOUTEND;
+	<span class="hljs-keyword">end</span>
+	<span class="hljs-comment">// 埋め込み</span>
+	<span class="hljs-keyword">else</span>
+	<span class="hljs-keyword">begin</span>
+		Sb_Change.Caption := <span class="hljs-string">'切出(&amp;G)'</span>;
+		ClientHeight := Trunc(<span class="hljs-number">622</span> * m_iZoom / <span class="hljs-number">100</span>);
+		ClientWidth  := Trunc(<span class="hljs-number">945</span> * m_iZoom / <span class="hljs-number">100</span>);
+		iAction      := ACTID_DOCKINGINEND;
+	<span class="hljs-keyword">end</span>;
+
+	wkParam.iAction := iAction;
+	wkParam.pRecord := Pointer(m_pMyAppRecord);
+	wkParam.pActionParam := <span class="hljs-keyword">nil</span>;
+	TMjsAppRecord(m_pMyAppRecord^).m_pOwnerEntry(@wkParam);
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-keyword">end</span>.
+</div></code></pre>
+
+</body>
+</html>

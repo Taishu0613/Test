@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MJSアプリケーション.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* a11y-dark theme */
+/* Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css */
+/* @author: ericwbailey */
+
+/* Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #d4d0ab;
+}
+
+/* Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #ffa07a;
+}
+
+/* Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #f5ab35;
+}
+
+/* Yellow */
+.hljs-attribute {
+  color: #ffd700;
+}
+
+/* Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #abe338;
+}
+
+/* Blue */
+.hljs-title,
+.hljs-section {
+  color: #00e0e0;
+}
+
+/* Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #dcc6e0;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #2b2b2b;
+  color: #f8f8f2;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .hljs-addition,
+  .hljs-attribute,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-bullet,
+  .hljs-comment,
+  .hljs-link,
+  .hljs-literal,
+  .hljs-meta,
+  .hljs-number,
+  .hljs-params,
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-type,
+  .hljs-quote {
+        color: highlight;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag {
+        font-weight: bold;
+    }
+}
+
+</style>
+<link rel="stylesheet" href="file://ncp-zaimu-fs1/S.WORK/%E6%96%B0%E5%85%A5%E7%A4%BE%E5%93%A1%E7%A0%94%E4%BF%AE/%E6%96%B0%E4%BA%BA%E7%A4%BE%E5%93%A1%E7%A0%94%E4%BF%AEweb%E3%83%9A%E3%83%BC%E3%82%B8/MJS%E8%B3%87%E6%96%99/github-markdown.css" type="text/css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="mjs%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3---omit-in-toc">MJSアプリケーション<!-- omit in toc --></h1>
+<h3 id="%E8%AA%B2%E9%A1%8C---omit-in-toc">課題<!-- omit in toc --></h3>
+<p><strong>Delphi</strong>と<strong>SQL</strong>を使って<br>1.テーブルCRUD機能<br>2.テーブル印刷機能<br>を備えたプログラムを <strong>MJS LINK DX</strong>　の<strong>原価率計算</strong>のぺージに作成してください</p>
+<h3 id="%E5%85%A8%E4%BD%93%E3%81%AE%E6%B5%81%E3%82%8C---omit-in-toc">全体の流れ<!-- omit in toc --></h3>
+<p>Delphiからボタンやテキスト欄を通じてSQL文を実行する。帰ってきたデータを変数（MemData）に保存して表示する。<br>
+＋レイアウトに変数を渡して紙用にカスタマイズして印刷する。</p>
+<h3 id="%E7%9B%AE%E6%AC%A1---omit-in-toc">目次<!-- omit in toc --></h3>
+<ul>
+<li><a href="#%E5%BF%85%E8%A6%81%E3%81%AA%E4%BB%96%E7%A4%BE%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88">必要な他社コンポーネント</a></li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%82%92%E3%82%92delphi%E3%81%AB%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B">データベースのテーブルををDelphiに表示する</a>
+<ul>
+<li><a href="#%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E7%94%BB%E9%9D%A2%E3%83%86%E3%83%BC%E3%83%96%E3%83%ABcrud%E6%A9%9F%E8%83%BD%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%82%92%E7%94%A8%E6%84%8F%E3%81%97%E3%81%A6%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B">【デザイン画面】テーブルCRUD機能に必要なコンポーネントを用意して設定する</a></li>
+<li><a href="#%E3%82%B3%E3%83%BC%E3%83%89%E7%94%BB%E9%9D%A2memdata%E3%81%AE%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89%E3%81%ABsql%E3%81%AE%E7%B5%90%E6%9E%9C%E3%82%92%E6%B8%A1%E3%81%99">【コード画面】MemDataのフィールドにSQLの結果を渡す</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A3%9C%E8%B6%B3">補足</a>
+<ul>
+<li><a href="#dxmemdata%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><strong>dxMemData</strong>について</a></li>
+<li><a href="#dxmemdata%E3%81%AE%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%A4%E3%81%84%E3%81%A6"><strong>dxMemData</strong>のプロパティついて</a></li>
+<li><a href="#dxdbgrid%E3%81%AE%E3%82%AB%E3%83%A9%E3%83%A0%E3%81%AErecid%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><strong>dxDBGrid</strong>のカラムのRecIdについて</a></li>
+<li><a href="#sql%E3%81%AE%E5%AE%9F%E8%A1%8C%E6%96%B9%E6%B3%95%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">SQLの実行方法の仕組みについて</a></li>
+<li><a href="#with--do-%E6%96%87%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">with ~ do 文について</a></li>
+<li><a href="#begintran%E3%81%A8%E3%81%8B%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF">BeginTranとかの使い方（トランザクション/コミット/ロールバック）</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="%E5%BF%85%E8%A6%81%E3%81%AA%E4%BB%96%E7%A4%BE%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88">必要な他社コンポーネント</h3>
+<ol>
+<li><strong>テーブルCRUD機能に必要なコンポーネント</strong>
+・<strong>TdxDBGrid</strong> (表示画面)<br>
+・TDataSource(Memデータをコンポーネントに送る？)<br>
+・dxMemData (任意のフィールドを用意する)</li>
+<li><strong>テーブル印刷機能に必要なコンポーネント</strong><br>
+・<strong>TppReport</strong>(レイアウト等？)<br>
+・<strong>TppDBPipeline</strong>(データをレイアウトに送る?)<br>
+・TDataSource<br>
+・dxMemData<br>
+<img src="imgs/図1.png" alt=""></li>
+</ol>
+<h3 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%82%92%E3%82%92delphi%E3%81%AB%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B">データベースのテーブルををDelphiに表示する</h3>
+<h4 id="%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E7%94%BB%E9%9D%A2%E3%83%86%E3%83%BC%E3%83%96%E3%83%ABcrud%E6%A9%9F%E8%83%BD%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%82%92%E7%94%A8%E6%84%8F%E3%81%97%E3%81%A6%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B">【デザイン画面】テーブルCRUD機能に必要なコンポーネントを用意して設定する</h4>
+<ol>
+<li><strong>dxMemData</strong>を<strong>ダブルクリック</strong>で表示したいカラムの数だけフィールドを作成する</li>
+<li><strong>TDataSource</strong>でイベント欄でDataSetで対応させたいMemDataコンポーネントを選択する</li>
+<li><strong>TdxDBGrid</strong>をイベント欄のDataSourceで対応させたいTDataSourceを選択する＋<strong>ダブルクリックで</strong>表示したいカラムを作成する</li>
+</ol>
+<h4 id="%E3%82%B3%E3%83%BC%E3%83%89%E7%94%BB%E9%9D%A2memdata%E3%81%AE%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89%E3%81%ABsql%E3%81%AE%E7%B5%90%E6%9E%9C%E3%82%92%E6%B8%A1%E3%81%99">【コード画面】MemDataのフィールドにSQLの結果を渡す</h4>
+<p>(デザイン側の設定でMemDataに結果を渡せば自動的にグリッドに表示される)</p>
+<pre class="hljs"><code><div>   <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">MemdataSetSuru</span><span class="hljs-params">(<span class="hljs-keyword">var</span> aMem: TdxMemData)</span>;</span>
+   <span class="hljs-keyword">begin</span>
+       <span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+       <span class="hljs-keyword">begin</span>
+           <span class="hljs-keyword">if</span> aMem.RecordCount &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">then</span>
+           <span class="hljs-keyword">begin</span>
+               aMem.Close();  		<span class="hljs-comment">//念のため一回閉じる</span>
+           <span class="hljs-keyword">end</span>;
+           aMem.Open();   			<span class="hljs-comment">//そして開く</span>
+           aMem.DisableControls;		<span class="hljs-comment">//描画を一旦止める処理（速度向上目的）</span>
+           <span class="hljs-keyword">try</span>
+               Close;
+               SQL.Clear;
+               SQL.Add(<span class="hljs-string">'SELECT カラム１,カラム２ FROM データベース名'</span>);
+               SQL.Add(<span class="hljs-string">'ORDER BY'</span>);
+               SQL.Add(<span class="hljs-string">'ID'</span>);
+               Open(True);  		  <span class="hljs-comment">//クエリに入れたSQLを開く</span>
+               <span class="hljs-keyword">while</span> EOF = false <span class="hljs-keyword">do</span>  <span class="hljs-comment">//データの終端じゃなかったら代入</span>
+               <span class="hljs-keyword">begin</span>
+                   aMem.Append;     <span class="hljs-comment">//追加の準備（レコードを追加</span>
+                   aMem.FieldByName(<span class="hljs-string">'Code'</span>).AsInteger := GetFld(<span class="hljs-string">'カラム1'</span>).AsInteger;
+                   aMem.FieldByName(<span class="hljs-string">'Name'</span>).AsString := GetFld(<span class="hljs-string">'カラム2'</span>).AsString;
+                   aMem.Post;       <span class="hljs-comment">//追加完了（データ書き込み）</span>
+                   Next;            <span class="hljs-comment">//次の行</span>
+               <span class="hljs-keyword">end</span>;
+           <span class="hljs-keyword">finally</span>
+               Close;               <span class="hljs-comment">//クエリを閉じる</span>
+               dxmemdata1.EnableControls; <span class="hljs-comment">//描画を再開する（速度向上目的）</span>
+           <span class="hljs-keyword">end</span>;
+       <span class="hljs-keyword">end</span>;
+   <span class="hljs-keyword">end</span>;
+</div></code></pre>
+<p>このコードはdelphiからデータベースにセレクト文を実行させ、返ってきた結果をMemDataの各フィールドに保存している。<br>
+<strong>※MemDataの各フィールドは、デザイン画面でTdxDBGridの各カラムと対応させた場合、そのまま画面に表示される事になる。</strong><br>
+こちらのコードは関数なので<br>
+・データを変更した際の再表示<br>
+・ページを開く際<br>
+などで呼び出して使う。また、</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">var</span> aMem: TdxMemData
+</div></code></pre>
+<p>は、引数なので呼び出す際に、保存したいMemData名を選択する必要がある。
+例</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">TMAS290200f</span>.<span class="hljs-title">FormShow</span><span class="hljs-params">(Sender: TObject)</span>;</span><span class="hljs-comment">//ページが読み込まれる時</span>
+<span class="hljs-keyword">begin</span>
+    MemdataSetSuru(dxMemData1);
+<span class="hljs-keyword">end</span>;
+</div></code></pre>
+<h3 id="%E8%A3%9C%E8%B6%B3">補足</h3>
+<h4 id="dxmemdata%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><strong>dxMemData</strong>について</h4>
+<p><img src="imgs/Memdata違い.png" alt=""></p>
+<p>・自動生成で宣言される変数は、MemData名＋フィールド名となる。<br>
+例、MemData名:<strong>dxMemData1</strong>　フィールド名:<strong>ID</strong> の場合</p>
+<pre class="hljs"><code><div>    dxMemData1ID: TStringField; 
+</div></code></pre>
+<h4 id="dxmemdata%E3%81%AE%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%A4%E3%81%84%E3%81%A6"><strong>dxMemData</strong>のプロパティついて</h4>
+<pre class="hljs"><code><div>dxMemData1.First;                        <span class="hljs-comment">//レコードの最初の位置に移動する。試したが、違いそう。</span>
+<span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span> <span class="hljs-keyword">to</span> dxMemData1.RecordCount <span class="hljs-keyword">do</span>; <span class="hljs-comment">//１からレコードの数まで繰り替えす。 </span>
+dxMemData1.Next;                         <span class="hljs-comment">//一つ下（次）のレコード位置に移動すると思われる。試したが、違いそう。</span>
+</div></code></pre>
+<p><strong>RecordCount</strong>は、<strong>今いくつのレコードがあるか</strong>が記録されている。</p>
+<h4 id="dxdbgrid%E3%81%AE%E3%82%AB%E3%83%A9%E3%83%A0%E3%81%AErecid%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><strong>dxDBGrid</strong>のカラムのRecIdについて</h4>
+<p>DBGridに表示されているデータ順番を示すものである。recordIDの略？</p>
+<h4 id="sql%E3%81%AE%E5%AE%9F%E8%A1%8C%E6%96%B9%E6%B3%95%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">SQLの実行方法の仕組みについて</h4>
+<p>・<strong>セレクト文</strong>などの<strong>直接変更を加えない命令文</strong></p>
+<pre class="hljs"><code><div>    Open(True);  
+</div></code></pre>
+<p>で実行される。<em>引数のTrue</em>はSQLエラーで実行できなかった場合に<em>sybaseで実行失敗した時と同じエラー内容が表示</em>されるようになる。</p>
+<p>・それ以外のデータベースに<strong>直接変更を加える命令文</strong>は</p>
+<pre class="hljs"><code><div>    ExecSQL();
+</div></code></pre>
+<p>で実行される。</p>
+<p>・EOFはEnd Of File の略でファイルの終端を表している。<br>
+・Whileは繰り返し文で最後のNextによって一行ずつ読みこまれ、最後の行まで繰り返されている。<strong>.Post</strong>で一旦処理を<strong>TDataSource</strong>が読み込むのを許可していると思われる。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">while</span> EOF = false <span class="hljs-keyword">do</span>  <span class="hljs-comment">//データの終端じゃなかったら代入</span>
+<span class="hljs-keyword">begin</span>
+    aMem.Append;     <span class="hljs-comment">//追加の準備（レコードを追加</span>
+    aMem.FieldByName(<span class="hljs-string">'Code'</span>).AsInteger := GetFld(<span class="hljs-string">'ID'</span>).AsInteger;
+    aMem.FieldByName(<span class="hljs-string">'Name'</span>).AsString := GetFld(<span class="hljs-string">'NAME'</span>).AsString;
+    aMem.Post;       <span class="hljs-comment">//追加完了（データ書き込み）</span>
+    Next;            <span class="hljs-comment">//次の行（いらないかも）</span>
+<span class="hljs-keyword">end</span>;
+</div></code></pre>
+<h4 id="with--do-%E6%96%87%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">with ~ do 文について</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">begin</span>
+    SQL.Clear;
+    SQL.Add(<span class="hljs-string">'DELETE FROM _PLAYER WHERE id =1'</span>);
+    ExecSQL()
+<span class="hljs-keyword">end</span>;
+</div></code></pre>
+<p><code>with m_Query do</code>はこれからｍ_Queryの機能をたくさん使うよという時に使用すると便利。  m_Queryのプロパティ以外もかける。<br>
+SQL系の文はほとんどm_Queryのプロパティなので、上のコードは</p>
+<pre class="hljs"><code><div>m_Query.SQL.Clear;
+m_Query.SQL.Add(<span class="hljs-string">'DELETE FROM _PLAYER WHERE id =1'</span>);
+m_Query.ExecSQL()
+</div></code></pre>
+<p>を書き換えた形である。</p>
+<h4 id="begintran%E3%81%A8%E3%81%8B%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF">BeginTranとかの使い方（トランザクション/コミット/ロールバック）</h4>
+<pre class="hljs"><code><div>m_DataModule.BeginTran(m_CorpConnect);<span class="hljs-comment">//トランザクション</span>
+<span class="hljs-keyword">with</span> m_Query <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">begin</span>
+    SQL.Clear;
+    SQL.Add(<span class="hljs-string">'DELETE FROM _PLAYER WHERE id =1 '</span>);
+
+    <span class="hljs-keyword">if</span>(ExecSQL())<span class="hljs-keyword">then</span> m_DataModule.Commit(m_CorpConnect)  <span class="hljs-comment">// コミット</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span>
+        m_DataModule.Rollback(m_CorpConnect); <span class="hljs-comment">// ロールバック</span>
+    <span class="hljs-keyword">end</span>;
+</div></code></pre>
+<p><code>m_DataModule.BeginTran(m_CorpConnect);</code>でトランザクションを開始、<br>
+<code>if(ExecSQL())then</code>で【】内の関数が実行出来た場合、<br>
+<code>m_DataModule.Commit(m_CorpConnect)</code> コミット。出来なかった場合は<br>
+<code>m_DataModule.Rollback(m_CorpConnect)</code>ロールバックする。<br>
+データベースを直接変更しない場合（セレクト文など）は記述しなくてよい。（直接変更する場合も、SQL文が一つだけだと特に意味ないと思う）</p>
+<p>以上、上記の文章は、資料がなくて最初の理解が難しかったのでまとめた物で、間違っているかもしれないのでご了承ください。</p>
+<pre class="hljs"><code><div></div></code></pre>
+<p>である</p>
+
+</body>
+</html>
